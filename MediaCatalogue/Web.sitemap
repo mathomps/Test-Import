@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/" title="Home">
+    <siteMapNode url="~/search.aspx" title="Search"  description="" />
+    <siteMapNode url="~/Maintenance/" title="Maintenance"  description="">
+        <siteMapNode url="~/Maintenance/collections.aspx" title="Edit Collections"  description="" />
+        <siteMapNode url="~/Maintenance/mediasrc.aspx" title="Edit Media Sources"  description="" />
+        <siteMapNode url="~/Maintenance/mediasection.aspx" title="Edit Media Segments"  description="" />
+        <siteMapNode url="~/Maintenance/mediatype.aspx" title="Edit Media Types"  description="" />
+        <siteMapNode url="~/Maintenance/presenter.aspx" title="Edit Presenters"  description="" />
+    </siteMapNode>
+  </siteMapNode>  
+</siteMap>

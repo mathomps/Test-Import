@@ -1,0 +1,37 @@
+<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    
+</head>
+<body id="pageBody" runat="server">
+    <form id="form1" runat="server">
+    <div>
+        <h2>
+    Media Collection Searcher</h2>
+        
+    <table width="100%">
+        <tr>
+        <td valign="top" style="background-color: #eeeeff; width: 200px;">
+        
+        <asp:TreeView ID="NavMenuTreeView" runat="server" DataSourceID="dsSiteMap" ShowLines="True" Width="100%">
+        </asp:TreeView>
+        </td>
+        <td>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+        <asp:SiteMapDataSource ID="dsSiteMap" runat="server" />
+        </td>
+        </tr>
+    
+    </table>
+        &nbsp;&nbsp;<br />
+        <br />
+    </div>
+    </form>
+</body>
+</html>
