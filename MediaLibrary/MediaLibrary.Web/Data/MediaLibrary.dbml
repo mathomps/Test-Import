@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="MediaCatalogue" Class="MediaLibraryDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=WEBHOST04;Initial Catalog=MediaCatalogue;Persist Security Info=True;User ID=anonymous" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="MediaCatalogueConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Collection" Member="Collections">
+    <Type Name="Collection">
+      <Column Name="CollectionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Collection_MediaSource" Member="MediaSources" ThisKey="CollectionID" OtherKey="CollectionID" Type="MediaSource" />
+      <Association Name="Collection_Presenter" Member="Presenters" ThisKey="CollectionID" OtherKey="CollectionID" Type="Presenter" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MediaSection" Member="MediaSections">
+    <Type Name="MediaSection">
+      <Column Name="SectionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MediaSourceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PresenterID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeOffset" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PageNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="MediaSource_MediaSection" Member="MediaSource" ThisKey="MediaSourceID" OtherKey="MediaSourceID" Type="MediaSource" IsForeignKey="true" />
+      <Association Name="Presenter_MediaSection" Member="Presenter" ThisKey="PresenterID" OtherKey="PresenterID" Type="Presenter" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MediaSource" Member="MediaSources">
+    <Type Name="MediaSource">
+      <Column Name="MediaSourceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MediaTypeID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CollectionID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FullPath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="MediaSource_MediaSection" Member="MediaSections" ThisKey="MediaSourceID" OtherKey="MediaSourceID" Type="MediaSection" />
+      <Association Name="Collection_MediaSource" Member="Collection" ThisKey="CollectionID" OtherKey="CollectionID" Type="Collection" IsForeignKey="true" />
+      <Association Name="MediaType_MediaSource" Member="MediaType" ThisKey="MediaTypeID" OtherKey="MediaTypeID" Type="MediaType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MediaType" Member="MediaTypes">
+    <Type Name="MediaType">
+      <Column Name="MediaTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Association Name="MediaType_MediaSource" Member="MediaSources" ThisKey="MediaTypeID" OtherKey="MediaTypeID" Type="MediaSource" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Presenter" Member="Presenters">
+    <Type Name="Presenter">
+      <Column Name="PresenterID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CollectionID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Presenter_MediaSection" Member="MediaSections" ThisKey="PresenterID" OtherKey="PresenterID" Type="MediaSection" />
+      <Association Name="Collection_Presenter" Member="Collection" ThisKey="CollectionID" OtherKey="CollectionID" Type="Collection" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MediaLibrary">
+  <DataContextMoniker Name="/MediaLibraryDataContext" />
+  <nestedChildShapes>
+    <classShape Id="88aed153-0d80-43b3-9d02-887b662dc817" absoluteBounds="0.75, 4, 2, 1.0961531575520831">
+      <DataClassMoniker Name="/MediaLibraryDataContext/Collection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="62899fa3-c354-4f10-aa63-92258a93e98f" absoluteBounds="0.765, 4.46, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bcd9741f-6001-4a83-a2ef-23aedad5e839" absoluteBounds="6.25, 2, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/MediaLibraryDataContext/MediaSection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7b85b95-88fd-473a-b3fb-098d1851c609" absoluteBounds="6.265, 2.46, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="19824f05-1883-4440-8d77-c95bcfe42f23" absoluteBounds="3.5, 0.75, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/MediaLibraryDataContext/MediaSource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="439a4abf-c180-4c41-ba72-c75a5bf085cd" absoluteBounds="3.515, 1.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 1.3749995); (7.25 : 1.3749995); (7.25 : 2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaLibraryDataContext/MediaSource/MediaSource_MediaSection" />
+      <nodes>
+        <classShapeMoniker Id="19824f05-1883-4440-8d77-c95bcfe42f23" />
+        <classShapeMoniker Id="bcd9741f-6001-4a83-a2ef-23aedad5e839" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 4); (1.75 : 1.54459757486979); (3.5 : 1.54459757486979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaLibraryDataContext/Collection/Collection_MediaSource" />
+      <nodes>
+        <classShapeMoniker Id="88aed153-0d80-43b3-9d02-887b662dc817" />
+        <classShapeMoniker Id="19824f05-1883-4440-8d77-c95bcfe42f23" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="922e31e0-a050-4fbf-9068-c8e4cb0a5e2a" absoluteBounds="0.75, 6.5, 2, 1.0961531575520844">
+      <DataClassMoniker Name="/MediaLibraryDataContext/MediaType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2bb165a8-318c-4add-b4b2-9c05848783bf" absoluteBounds="0.76500000000000012, 6.96, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 6.5); (3.125 : 6.125); (3.125 : 1.97314836230469); (3.5 : 1.97314836230469)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaLibraryDataContext/MediaType/MediaType_MediaSource" />
+      <nodes>
+        <classShapeMoniker Id="922e31e0-a050-4fbf-9068-c8e4cb0a5e2a" />
+        <classShapeMoniker Id="19824f05-1883-4440-8d77-c95bcfe42f23" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="815e411a-492a-4227-9c5c-9793aaecd0e0" absoluteBounds="3.5, 3.875, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/MediaLibraryDataContext/Presenter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="71700a2a-b16d-4b0b-ac3b-199d406eb90d" absoluteBounds="3.515, 4.335, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.52669564973958); (7.25 : 4.52669564973958); (7.25 : 3.91788981119792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaLibraryDataContext/Presenter/Presenter_MediaSection" />
+      <nodes>
+        <classShapeMoniker Id="815e411a-492a-4227-9c5c-9793aaecd0e0" />
+        <classShapeMoniker Id="bcd9741f-6001-4a83-a2ef-23aedad5e839" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.54807657877604); (3.04166666666667 : 4.54807657877604 : JumpStart); (3.20833333333333 : 4.54807657877604 : JumpEnd); (3.5 : 4.54807657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaLibraryDataContext/Collection/Collection_Presenter" />
+      <nodes>
+        <classShapeMoniker Id="88aed153-0d80-43b3-9d02-887b662dc817" />
+        <classShapeMoniker Id="815e411a-492a-4227-9c5c-9793aaecd0e0" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
