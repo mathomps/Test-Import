@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="MediaCatalogue" Class="MediaCatalogueDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WEBHOST04;Initial Catalog=MediaCatalogue;Persist Security Info=True;User ID=anonymous" SettingsObjectName="MediaLibraryEditor.Properties.Settings" SettingsPropertyName="MediaCatalogueConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Media_File" Member="Media_Files">
+    <Type Name="Media_File">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Filename" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Size" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Media_Location_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Media_File_Media_Item" Member="Media_Items" ThisKey="id" OtherKey="Media_File_id" Type="Media_Item" />
+      <Association Name="Media_Location_Media_File" Member="Media_Location" ThisKey="Media_Location_id" OtherKey="id" Type="Media_Location" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TV_SeriesMedia" Member="TV_SeriesMedias">
+    <Type Name="TV_SeriesMedia">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Media_Item_id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TV_Series_id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Media_Item_TV_SeriesMedia" Member="Media_Item" ThisKey="Media_Item_id" OtherKey="id" Type="Media_Item" IsForeignKey="true" />
+      <Association Name="TV_Sery_TV_SeriesMedia" Member="TV_Series" ThisKey="TV_Series_id" OtherKey="id" Type="TV_Series" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Media_Item" Member="Media_Items">
+    <Type Name="Media_Item">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Media_File_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Media_Type_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Media_Item_TV_SeriesMedia" Member="TV_SeriesMedias" ThisKey="id" OtherKey="Media_Item_id" Type="TV_SeriesMedia" />
+      <Association Name="Media_Item_Media_Segment" Member="Media_Segments" ThisKey="id" OtherKey="Media_Item_id" Type="Media_Segment" />
+      <Association Name="Media_Item_Music_Track" Member="Music_Tracks" ThisKey="id" OtherKey="Media_Item_id" Type="Music_Track" />
+      <Association Name="Media_File_Media_Item" Member="Media_File" ThisKey="Media_File_id" OtherKey="id" Type="Media_File" IsForeignKey="true" />
+      <Association Name="Media_Type_Media_Item" Member="Media_Type" ThisKey="Media_Type_id" OtherKey="id" Type="Media_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Media_Location" Member="Media_Locations">
+    <Type Name="Media_Location">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RelativePath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DiskSignature" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DriveLetter" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Association Name="Media_Location_Media_File" Member="Media_Files" ThisKey="id" OtherKey="Media_Location_id" Type="Media_File" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Media_Segment" Member="Media_Segments">
+    <Type Name="Media_Segment">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Media_Item_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="TV_Presenter_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="SectionOffset" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SectionLength" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PageNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TV_Category_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Media_Item_Media_Segment" Member="Media_Item" ThisKey="Media_Item_id" OtherKey="id" Type="Media_Item" IsForeignKey="true" />
+      <Association Name="TV_Category_Media_Segment" Member="TV_Category" ThisKey="TV_Category_id" OtherKey="id" Type="TV_Category" IsForeignKey="true" />
+      <Association Name="TV_Presenter_Media_Segment" Member="TV_Presenter" ThisKey="TV_Presenter_id" OtherKey="id" Type="TV_Presenter" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Media_Type" Member="Media_Types">
+    <Type Name="Media_Type">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Association Name="Media_Type_Media_Item" Member="Media_Items" ThisKey="id" OtherKey="Media_Type_id" Type="Media_Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Music_Artist" Member="Music_Artists">
+    <Type Name="Music_Artist">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Association Name="Music_Artist_Music_Track" Member="Music_Tracks" ThisKey="id" OtherKey="Music_Artist_id" Type="Music_Track" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Music_Genre" Member="Music_Genres">
+    <Type Name="Music_Genre">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Parent_Genre_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Association Name="Music_Genre_Music_Genre" Member="Music_Genres" ThisKey="id" OtherKey="Parent_Genre_id" Type="Music_Genre" />
+      <Association Name="Music_Genre_Music_Track" Member="Music_Tracks" ThisKey="id" OtherKey="Music_Genre_id" Type="Music_Track" />
+      <Association Name="Music_Genre_Music_Genre" Member="Music_Genre1" ThisKey="Parent_Genre_id" OtherKey="id" Type="Music_Genre" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Music_Track" Member="Music_Tracks">
+    <Type Name="Music_Track">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Media_Item_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Music_Artist_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Duration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Music_Genre_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Media_Item_Music_Track" Member="Media_Item" ThisKey="Media_Item_id" OtherKey="id" Type="Media_Item" IsForeignKey="true" />
+      <Association Name="Music_Artist_Music_Track" Member="Music_Artist" ThisKey="Music_Artist_id" OtherKey="id" Type="Music_Artist" IsForeignKey="true" />
+      <Association Name="Music_Genre_Music_Track" Member="Music_Genre" ThisKey="Music_Genre_id" OtherKey="id" Type="Music_Genre" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TV_Category" Member="TV_Categories">
+    <Type Name="TV_Category">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Association Name="TV_Category_Media_Segment" Member="Media_Segments" ThisKey="id" OtherKey="TV_Category_id" Type="Media_Segment" />
+      <Association Name="TV_Category_TV_SeriesCategory" Member="TV_SeriesCategories" ThisKey="id" OtherKey="TV_Category_id" Type="TV_SeriesCategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TV_Presenter" Member="TV_Presenters">
+    <Type Name="TV_Presenter">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TV_Series_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TV_Presenter_Media_Segment" Member="Media_Segments" ThisKey="id" OtherKey="TV_Presenter_id" Type="Media_Segment" />
+      <Association Name="TV_Sery_TV_Presenter" Member="TV_Series" ThisKey="TV_Series_id" OtherKey="id" Type="TV_Series" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TV_Series" Member="TV_Series">
+    <Type Name="TV_Series">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TV_Sery_TV_SeriesMedia" Member="TV_SeriesMedias" ThisKey="id" OtherKey="TV_Series_id" Type="TV_SeriesMedia" />
+      <Association Name="TV_Sery_TV_Presenter" Member="TV_Presenters" ThisKey="id" OtherKey="TV_Series_id" Type="TV_Presenter" />
+      <Association Name="TV_Sery_TV_SeriesCategory" Member="TV_SeriesCategories" ThisKey="id" OtherKey="TV_Series_id" Type="TV_SeriesCategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TV_SeriesCategory" Member="TV_SeriesCategories">
+    <Type Name="TV_SeriesCategory">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TV_Series_id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TV_Category_id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="TV_Category_TV_SeriesCategory" Member="TV_Category" ThisKey="TV_Category_id" OtherKey="id" Type="TV_Category" IsForeignKey="true" />
+      <Association Name="TV_Sery_TV_SeriesCategory" Member="TV_Series" ThisKey="TV_Series_id" OtherKey="id" Type="TV_Series" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

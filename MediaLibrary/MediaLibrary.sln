@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLibrary.Web", "MediaLibrary.Web\MediaLibrary.Web.csproj", "{EA2A6990-37D5-4927-B4C3-890B40EB03C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLibraryEditor", "MediaLibraryEditor\MediaLibraryEditor.csproj", "{2038FD0A-C659-4C8B-AC14-EE8EF3F20BCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{EA2A6990-37D5-4927-B4C3-890B40EB03C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA2A6990-37D5-4927-B4C3-890B40EB03C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA2A6990-37D5-4927-B4C3-890B40EB03C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2038FD0A-C659-4C8B-AC14-EE8EF3F20BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2038FD0A-C659-4C8B-AC14-EE8EF3F20BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2038FD0A-C659-4C8B-AC14-EE8EF3F20BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2038FD0A-C659-4C8B-AC14-EE8EF3F20BCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

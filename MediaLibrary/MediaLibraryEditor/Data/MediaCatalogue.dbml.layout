@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.375, 11.75" name="MediaCatalogue">
+  <DataContextMoniker Name="/MediaCatalogueDataContext" />
+  <nestedChildShapes>
+    <classShape Id="907c342b-24b2-4c9e-80c7-a547fb95ffb9" absoluteBounds="2.125, 4, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Media_File" />
+      <nestedChildShapes>
+        <elementListCompartment Id="49b97ab2-03bd-46c4-b83d-6acf8ba76b84" absoluteBounds="2.14, 4.46, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="792aca68-6da6-4192-808b-54b174274c52" absoluteBounds="11.375, 4.625, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/TV_SeriesMedia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="23605e07-6369-45bc-b8a4-129fce7af3fb" absoluteBounds="11.39, 5.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf2d3a8b-112c-4df8-a767-0bc4e8a5d54b" absoluteBounds="6.25, 3.75, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Media_Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0c1ff7f8-2cfd-4d0c-8a65-0c377472288e" absoluteBounds="6.265, 4.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ba7ad5f-a290-492e-b77e-e0b349154129" absoluteBounds="2.375, 6.75, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Media_Location" />
+      <nestedChildShapes>
+        <elementListCompartment Id="80e7ffd8-4982-4197-94cf-cff6cb91bf71" absoluteBounds="2.39, 7.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a9eb3f8-ac22-4fce-af16-f5092cda0589" absoluteBounds="9, 6.375, 2, 2.2465844726562505">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Media_Segment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="866baac7-b9bc-4e39-afa7-a82a3c638acf" absoluteBounds="9.015, 6.835, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a21bb503-2bba-4a73-be7a-4948ba05f22c" absoluteBounds="4.375, 1.375, 2, 1.0961531575520838">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Media_Type" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22b10c26-4b1f-4303-a411-f0a31fb69406" absoluteBounds="4.3900000000000006, 1.835, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bb404c3b-3c49-46cd-8dfc-9590bedc0f40" absoluteBounds="11.125, 0.5, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Music_Artist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de16c9ea-f16c-4692-967a-78a19fe77b55" absoluteBounds="11.14, 0.96, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="760b3e54-ea68-4258-b7f6-2885a9402096" absoluteBounds="11.25, 2.25, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Music_Genre" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7de4c4e3-774a-4b33-865c-915050eeac6f" absoluteBounds="11.265, 2.71, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f39a827c-6d3b-44f0-8044-07cfa7c5586d" absoluteBounds="8.5, 0.625, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/Music_Track" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e09b447-cc3a-409f-b573-8a3a2c5e0d75" absoluteBounds="8.515, 1.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="492bb513-2b24-4bb4-ba1b-2626aff9efcf" absoluteBounds="8.625, 10.25, 2, 1.2605004882812487">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/TV_Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bec3e7d5-5cf4-40e9-9c2c-0f09d0d844ee" absoluteBounds="8.64, 10.71, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bccdbce6-ffba-4c95-a3d7-c4208ab737cc" absoluteBounds="14.125, 6.125, 2, 1.2605004882812487">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/TV_Presenter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1f141c5d-a4f7-401b-8f2c-937c74cee489" absoluteBounds="14.14, 6.5850000000000009, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a046ea57-3a0d-47b5-b082-b2c5c65c1882" absoluteBounds="11.875, 8, 2, 1.0961531575520844">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/TV_Series" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a1edf671-0d6d-4897-9343-ffad76748c2d" absoluteBounds="11.89, 8.46, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0bb6883-e3fc-4457-a71b-2c332586f70d" absoluteBounds="11.25, 10.25, 2, 1.2605004882812487">
+      <DataClassMoniker Name="/MediaCatalogueDataContext/TV_SeriesCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1866d97b-184d-4a28-8a39-3f5da49806e8" absoluteBounds="11.265, 10.71, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.25 : 4.98209757486979); (11.375 : 4.98209757486979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Media_Item/Media_Item_TV_SeriesMedia" />
+      <nodes>
+        <classShapeMoniker Id="bf2d3a8b-112c-4df8-a767-0bc4e8a5d54b" />
+        <classShapeMoniker Id="792aca68-6da6-4192-808b-54b174274c52" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.125 : 4.66959757486979); (6.25 : 4.66959757486979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Media_File/Media_File_Media_Item" />
+      <nodes>
+        <classShapeMoniker Id="907c342b-24b2-4c9e-80c7-a547fb95ffb9" />
+        <classShapeMoniker Id="bf2d3a8b-112c-4df8-a767-0bc4e8a5d54b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.25 : 6.75); (3.25 : 5.58919514973958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Media_Location/Media_Location_Media_File" />
+      <nodes>
+        <classShapeMoniker Id="1ba7ad5f-a290-492e-b77e-e0b349154129" />
+        <classShapeMoniker Id="907c342b-24b2-4c9e-80c7-a547fb95ffb9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 5.33919514973958); (7.25 : 7.49829223632813); (9 : 7.49829223632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Media_Item/Media_Item_Media_Segment" />
+      <nodes>
+        <classShapeMoniker Id="bf2d3a8b-112c-4df8-a767-0bc4e8a5d54b" />
+        <classShapeMoniker Id="6a9eb3f8-ac22-4fce-af16-f5092cda0589" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.2812475 : 2.47115315755208); (5.2812475 : 4.1785462874349); (6.25 : 4.1785462874349)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Media_Type/Media_Type_Media_Item" />
+      <nodes>
+        <classShapeMoniker Id="a21bb503-2bba-4a73-be7a-4948ba05f22c" />
+        <classShapeMoniker Id="bf2d3a8b-112c-4df8-a767-0bc4e8a5d54b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.9472850078876 : 3.51050048828125); (11.9472850078876 : 3.76050048828125); (12.5671299917368 : 3.76050048828125); (12.5671299917368 : 3.51050048828125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Music_Genre/Music_Genre_Music_Genre" />
+      <nodes>
+        <classShapeMoniker Id="760b3e54-ea68-4258-b7f6-2885a9402096" />
+        <classShapeMoniker Id="760b3e54-ea68-4258-b7f6-2885a9402096" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.34375 : 3.75); (7.34375 : 0.96875); (8.5 : 0.96875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Media_Item/Media_Item_Music_Track" />
+      <nodes>
+        <classShapeMoniker Id="bf2d3a8b-112c-4df8-a767-0bc4e8a5d54b" />
+        <classShapeMoniker Id="f39a827c-6d3b-44f0-8044-07cfa7c5586d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.125 : 1.11057657877604); (10.5 : 1.11057657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Music_Artist/Music_Artist_Music_Track" />
+      <nodes>
+        <classShapeMoniker Id="bb404c3b-3c49-46cd-8dfc-9590bedc0f40" />
+        <classShapeMoniker Id="f39a827c-6d3b-44f0-8044-07cfa7c5586d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 2.88025024414063); (9.5 : 2.88025024414063); (9.5 : 2.21419514973958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/Music_Genre/Music_Genre_Music_Track" />
+      <nodes>
+        <classShapeMoniker Id="760b3e54-ea68-4258-b7f6-2885a9402096" />
+        <classShapeMoniker Id="f39a827c-6d3b-44f0-8044-07cfa7c5586d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.8125 : 10.25); (9.8125 : 8.62158447265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/TV_Category/TV_Category_Media_Segment" />
+      <nodes>
+        <classShapeMoniker Id="492bb513-2b24-4bb4-ba1b-2626aff9efcf" />
+        <classShapeMoniker Id="6a9eb3f8-ac22-4fce-af16-f5092cda0589" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.125 : 6.88025024414062); (12.7083333333333 : 6.88025024414062 : JumpStart); (12.5416666666667 : 6.88025024414062 : JumpEnd); (11 : 6.88025024414062)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/TV_Presenter/TV_Presenter_Media_Segment" />
+      <nodes>
+        <classShapeMoniker Id="bccdbce6-ffba-4c95-a3d7-c4208ab737cc" />
+        <classShapeMoniker Id="6a9eb3f8-ac22-4fce-af16-f5092cda0589" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.625 : 8); (12.625 : 5.88550048828125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/TV_Series/TV_Sery_TV_SeriesMedia" />
+      <nodes>
+        <classShapeMoniker Id="a046ea57-3a0d-47b5-b082-b2c5c65c1882" />
+        <classShapeMoniker Id="792aca68-6da6-4192-808b-54b174274c52" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.875 : 8); (14.125 : 7.38550048828125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/TV_Series/TV_Sery_TV_Presenter" />
+      <nodes>
+        <classShapeMoniker Id="a046ea57-3a0d-47b5-b082-b2c5c65c1882" />
+        <classShapeMoniker Id="bccdbce6-ffba-4c95-a3d7-c4208ab737cc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.625 : 10.8802502441406); (11.25 : 10.8802502441406)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/TV_Category/TV_Category_TV_SeriesCategory" />
+      <nodes>
+        <classShapeMoniker Id="492bb513-2b24-4bb4-ba1b-2626aff9efcf" />
+        <classShapeMoniker Id="b0bb6883-e3fc-4457-a71b-2c332586f70d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.5625 : 9.09615315755208); (12.5625 : 10.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MediaCatalogueDataContext/TV_Series/TV_Sery_TV_SeriesCategory" />
+      <nodes>
+        <classShapeMoniker Id="a046ea57-3a0d-47b5-b082-b2c5c65c1882" />
+        <classShapeMoniker Id="b0bb6883-e3fc-4457-a71b-2c332586f70d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
