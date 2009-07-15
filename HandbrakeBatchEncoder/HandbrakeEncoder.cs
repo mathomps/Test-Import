@@ -88,7 +88,7 @@ namespace HandbrakeBatchEncoder
 
                 // Rename the output file to .avi (or original file extension)
                 string originalDestExtension = Path.GetExtension(_destinationFile);
-                File.Move(tempDestination, Path.ChangeExtension(tempDestination, originalDestExtension);
+                File.Move(tempDestination, Path.ChangeExtension(tempDestination, originalDestExtension));
 
                 string moveToPath = Path.Combine(Settings.Default.WatchFolder, Settings.Default.CompletedInputFolder);
 
