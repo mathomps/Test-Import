@@ -6,7 +6,7 @@
       <Value Profile="(Default)">C:\Program Files\HandBrake\HandBrakeCLI.exe</Value>
     </Setting>
     <Setting Name="EncodeSettings" Type="System.String" Scope="Application">
-      <Value Profile="(Default)"> -f avi -w 320 --deinterlace="slow" -e xvid -b 500 -2  -a 1 -E lame -B 160 -R 0 -6 dpl2 -D 1 -v </Value>
+      <Value Profile="(Default)"> -f avi -w 720 --deinterlace="slow" -e xvid -b 1200 -2  -a 1 -E lame -B 160 -R 0 -6 dpl2 -D 1 -v --crop 0:0:0:0</Value>
     </Setting>
     <Setting Name="WatchFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">D:\Temp\Drop</Value>

@@ -93,7 +93,21 @@ namespace HandbrakeBatchEncoder
                 string moveToPath = Path.Combine(Settings.Default.WatchFolder, Settings.Default.CompletedInputFolder);
 
                 // Move the source file to a Completed subfolder
-                File.Move(_sourceFile, Path.Combine(moveToPath, Path.GetFileName(_sourceFile)));
+                if (!Directory.Exists(moveToPath))
+                {
+                    // Folder doesn't exist - try to create it
+                    try
+                    {
+                        Directory.CreateDirectory(moveToPath);
+                    }
+                    catch (IOException)
+                    {}
+                }
+
+                if (Directory.Exists(moveToPath))
+                {
+                    File.Move(_sourceFile, Path.Combine(moveToPath, Path.GetFileName(_sourceFile)));
+                }
 
             }
 
