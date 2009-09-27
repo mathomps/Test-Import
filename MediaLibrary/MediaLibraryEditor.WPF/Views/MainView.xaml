@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:MediaLibraryEditor.WPF.Commands"
     xmlns:views="clr-namespace:MediaLibraryEditor.WPF.Views"
+    xmlns:musicView="clr-namespace:MediaLibraryEditor.WPF.Views.Music"
+    xmlns:musicVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.Music"
     Title="Main Window"
     Height="400"
     Width="800">
@@ -13,6 +15,13 @@
         <c:CommandReference
             x:Key="ExitCommandReference"
             Command="{Binding ExitCommand}" />
+        
+        <!-- Link the Views to ViewModels -->
+        <DataTemplate
+            DataType="{x:Type musicVM:MusicImportViewModel}">
+            <musicView:MusicImportView />
+        </DataTemplate>
+        
     </Window.Resources>
 
     <Window.InputBindings>
@@ -41,7 +50,29 @@
                 <ColumnDefinition
                     Width="3*" />
             </Grid.ColumnDefinitions>
-            <views:ModuleSelectionView />
+            <!--<views:ModuleSelectionView
+                DataContext="{Binding ModuleSelection}" /> -->
+            <ListBox
+                x:Name="_pagesList"
+                ItemsSource="{Binding Pages}"
+                Grid.Column="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+            <Border
+                Grid.Column="1"
+                Background="#cccccc"
+                CornerRadius="10">
+                <ContentControl Content="{Binding ElementName=_pagesList, Path=SelectedItem}"/>
+            </Border>
+
+
         </Grid>
     </DockPanel>
 </Window>
