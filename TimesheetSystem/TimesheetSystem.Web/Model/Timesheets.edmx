@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TimesheetsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="TimesheetsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="TimesheetsModelStoreContainer">
           <EntitySet Name="Client" EntityType="TimesheetsModel.Store.Client" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Timesheet" EntityType="TimesheetsModel.Store.Timesheet" store:Type="Tables" Schema="dbo" />
@@ -26,11 +26,11 @@
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="HourlyRate" Type="float" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="smallint" />
           <Property Name="Invoiced" Type="bit" Nullable="false" />
           <Property Name="DateEntered" Type="smalldatetime" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TimesheetsModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -56,8 +56,10 @@
           <Property Name="HourlyRate" Type="Double" Nullable="false" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
           <Property Name="Invoiced" Type="Boolean" Nullable="false" />
-          <Property Name="DateEntered" Type="DateTime" Nullable="false" />
-        </EntityType>
+          <Property Name="InvoiceNumber" Type="Int16" Nullable="true" />
+          <Property Name="DateEntered" Type="DateTime" Nullable="false" >
+            </Property>
+          </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -76,6 +78,7 @@
           <EntitySetMapping Name="Timesheet">
             <EntityTypeMapping TypeName="IsTypeOf(TimesheetsModel.Timesheet)">
               <MappingFragment StoreEntitySet="Timesheet">
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Client" ColumnName="Client" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -106,6 +109,6 @@
     <edmx:Diagrams>
       <Diagram Name="Timesheets">
         <EntityTypeShape EntityType="TimesheetsModel.Client" Width="1.5" PointX="0.75" PointY="0.75" Height="1.427958984375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimesheetsModel.Timesheet" Width="1.5" PointX="2.75" PointY="0.75" Height="2.085348307291667" IsExpanded="true" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="TimesheetsModel.Timesheet" Width="1.5" PointX="2.75" PointY="0.75" Height="2.2696956380208326" IsExpanded="true" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

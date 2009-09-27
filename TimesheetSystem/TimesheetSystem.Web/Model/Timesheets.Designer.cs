@@ -11,7 +11,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 
 // Original file name:
-// Generation date: 30/08/2009 2:56:32 PM
+// Generation date: 7/09/2009 12:51:13 PM
 namespace TimesheetSystem.Web.Model
 {
     
@@ -354,6 +354,29 @@ namespace TimesheetSystem.Web.Model
         private bool _Invoiced;
         partial void OnInvoicedChanging(bool value);
         partial void OnInvoicedChanged();
+        /// <summary>
+        /// There are no comments for Property InvoiceNumber in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<short> InvoiceNumber
+        {
+            get
+            {
+                return this._InvoiceNumber;
+            }
+            set
+            {
+                this.OnInvoiceNumberChanging(value);
+                this.ReportPropertyChanging("InvoiceNumber");
+                this._InvoiceNumber = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InvoiceNumber");
+                this.OnInvoiceNumberChanged();
+            }
+        }
+        private global::System.Nullable<short> _InvoiceNumber;
+        partial void OnInvoiceNumberChanging(global::System.Nullable<short> value);
+        partial void OnInvoiceNumberChanged();
         /// <summary>
         /// There are no comments for Property DateEntered in the schema.
         /// </summary>
