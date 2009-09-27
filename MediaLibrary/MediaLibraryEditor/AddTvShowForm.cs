@@ -46,7 +46,7 @@ namespace MediaLibraryEditor
                 // Add a new TV Series entry
                 string seriesName = uxTvSeriesComboBox.Text;
                 m_MediaItem.Title = "foo";
-                m_MediaItem.Description = ux
+                //m_MediaItem.Description = ux;
             }
 
 

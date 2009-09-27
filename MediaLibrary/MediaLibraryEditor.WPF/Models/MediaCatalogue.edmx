@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MediaCatalogueModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="MediaCatalogueModelStoreContainer">
+          <EntitySet Name="Media_File" EntityType="MediaCatalogueModel.Store.Media_File" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media_Item" EntityType="MediaCatalogueModel.Store.Media_Item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media_Location" EntityType="MediaCatalogueModel.Store.Media_Location" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media_Segment" EntityType="MediaCatalogueModel.Store.Media_Segment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media_Type" EntityType="MediaCatalogueModel.Store.Media_Type" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Music_Artist" EntityType="MediaCatalogueModel.Store.Music_Artist" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Music_Genre" EntityType="MediaCatalogueModel.Store.Music_Genre" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Music_Track" EntityType="MediaCatalogueModel.Store.Music_Track" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TV_Category" EntityType="MediaCatalogueModel.Store.TV_Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TV_Presenter" EntityType="MediaCatalogueModel.Store.TV_Presenter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TV_Series" EntityType="MediaCatalogueModel.Store.TV_Series" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TV_SeriesCategory" EntityType="MediaCatalogueModel.Store.TV_SeriesCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TV_SeriesMedia" EntityType="MediaCatalogueModel.Store.TV_SeriesMedia" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Media_File_Media_Location" Association="MediaCatalogueModel.Store.FK_Media_File_Media_Location">
+            <End Role="Media_Location" EntitySet="Media_Location" />
+            <End Role="Media_File" EntitySet="Media_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Item_Media_File" Association="MediaCatalogueModel.Store.FK_Media_Item_Media_File">
+            <End Role="Media_File" EntitySet="Media_File" />
+            <End Role="Media_Item" EntitySet="Media_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Item_Media_Type" Association="MediaCatalogueModel.Store.FK_Media_Item_Media_Type">
+            <End Role="Media_Type" EntitySet="Media_Type" />
+            <End Role="Media_Item" EntitySet="Media_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Segment_Media_Item" Association="MediaCatalogueModel.Store.FK_Media_Segment_Media_Item">
+            <End Role="Media_Item" EntitySet="Media_Item" />
+            <End Role="Media_Segment" EntitySet="Media_Segment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Segment_TV_Category" Association="MediaCatalogueModel.Store.FK_Media_Segment_TV_Category">
+            <End Role="TV_Category" EntitySet="TV_Category" />
+            <End Role="Media_Segment" EntitySet="Media_Segment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Segment_TV_Presenter" Association="MediaCatalogueModel.Store.FK_Media_Segment_TV_Presenter">
+            <End Role="TV_Presenter" EntitySet="TV_Presenter" />
+            <End Role="Media_Segment" EntitySet="Media_Segment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Genre_Music_Genre" Association="MediaCatalogueModel.Store.FK_Music_Genre_Music_Genre">
+            <End Role="Music_Genre" EntitySet="Music_Genre" />
+            <End Role="Music_Genre1" EntitySet="Music_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Track_Media_Item" Association="MediaCatalogueModel.Store.FK_Music_Track_Media_Item">
+            <End Role="Media_Item" EntitySet="Media_Item" />
+            <End Role="Music_Track" EntitySet="Music_Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Track_Music_Artist" Association="MediaCatalogueModel.Store.FK_Music_Track_Music_Artist">
+            <End Role="Music_Artist" EntitySet="Music_Artist" />
+            <End Role="Music_Track" EntitySet="Music_Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Track_Music_Genre" Association="MediaCatalogueModel.Store.FK_Music_Track_Music_Genre">
+            <End Role="Music_Genre" EntitySet="Music_Genre" />
+            <End Role="Music_Track" EntitySet="Music_Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presenter_Collection" Association="MediaCatalogueModel.Store.FK_Presenter_Collection">
+            <End Role="TV_Series" EntitySet="TV_Series" />
+            <End Role="TV_Presenter" EntitySet="TV_Presenter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesCategory_TV_Category" Association="MediaCatalogueModel.Store.FK_TV_SeriesCategory_TV_Category">
+            <End Role="TV_Category" EntitySet="TV_Category" />
+            <End Role="TV_SeriesCategory" EntitySet="TV_SeriesCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesCategory_TV_Series" Association="MediaCatalogueModel.Store.FK_TV_SeriesCategory_TV_Series">
+            <End Role="TV_Series" EntitySet="TV_Series" />
+            <End Role="TV_SeriesCategory" EntitySet="TV_SeriesCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesMedia_Media_Item" Association="MediaCatalogueModel.Store.FK_TV_SeriesMedia_Media_Item">
+            <End Role="Media_Item" EntitySet="Media_Item" />
+            <End Role="TV_SeriesMedia" EntitySet="TV_SeriesMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesMedia_TV_Series" Association="MediaCatalogueModel.Store.FK_TV_SeriesMedia_TV_Series">
+            <End Role="TV_Series" EntitySet="TV_Series" />
+            <End Role="TV_SeriesMedia" EntitySet="TV_SeriesMedia" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Media_File">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="255" />
+          <Property Name="Size" Type="bigint" />
+          <Property Name="ModifiedDate" Type="smalldatetime" />
+          <Property Name="Media_Location_id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Media_Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="80" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+          <Property Name="Media_File_id" Type="uniqueidentifier" />
+          <Property Name="Media_Type_id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Media_Location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="RelativePath" Type="varchar" MaxLength="255" />
+          <Property Name="DiskSignature" Type="varbinary(max)" />
+          <Property Name="DriveLetter" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Media_Segment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Media_Item_id" Type="uniqueidentifier" />
+          <Property Name="TV_Presenter_id" Type="uniqueidentifier" />
+          <Property Name="Title" Type="varchar" MaxLength="80" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="SectionOffset" Type="int" />
+          <Property Name="SectionLength" Type="int" />
+          <Property Name="PageNumber" Type="int" />
+          <Property Name="TV_Category_id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Media_Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Music_Artist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Music_Genre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Parent_Genre_id" Type="uniqueidentifier" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Music_Track">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Media_Item_id" Type="uniqueidentifier" />
+          <Property Name="Music_Artist_id" Type="uniqueidentifier" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="Music_Genre_id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="TV_Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="TV_Presenter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TV_Series_id" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TV_Series">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TV_SeriesCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TV_Series_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TV_Category_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TV_SeriesMedia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Media_Item_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TV_Series_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Media_File_Media_Location">
+          <End Role="Media_Location" Type="MediaCatalogueModel.Store.Media_Location" Multiplicity="0..1" />
+          <End Role="Media_File" Type="MediaCatalogueModel.Store.Media_File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media_Location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Media_File">
+              <PropertyRef Name="Media_Location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Item_Media_File">
+          <End Role="Media_File" Type="MediaCatalogueModel.Store.Media_File" Multiplicity="0..1" />
+          <End Role="Media_Item" Type="MediaCatalogueModel.Store.Media_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media_File">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Media_Item">
+              <PropertyRef Name="Media_File_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Item_Media_Type">
+          <End Role="Media_Type" Type="MediaCatalogueModel.Store.Media_Type" Multiplicity="0..1" />
+          <End Role="Media_Item" Type="MediaCatalogueModel.Store.Media_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media_Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Media_Item">
+              <PropertyRef Name="Media_Type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Segment_Media_Item">
+          <End Role="Media_Item" Type="MediaCatalogueModel.Store.Media_Item" Multiplicity="0..1" />
+          <End Role="Media_Segment" Type="MediaCatalogueModel.Store.Media_Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media_Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Media_Segment">
+              <PropertyRef Name="Media_Item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Segment_TV_Category">
+          <End Role="TV_Category" Type="MediaCatalogueModel.Store.TV_Category" Multiplicity="0..1" />
+          <End Role="Media_Segment" Type="MediaCatalogueModel.Store.Media_Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Media_Segment">
+              <PropertyRef Name="TV_Category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Segment_TV_Presenter">
+          <End Role="TV_Presenter" Type="MediaCatalogueModel.Store.TV_Presenter" Multiplicity="0..1" />
+          <End Role="Media_Segment" Type="MediaCatalogueModel.Store.Media_Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_Presenter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Media_Segment">
+              <PropertyRef Name="TV_Presenter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Genre_Music_Genre">
+          <End Role="Music_Genre" Type="MediaCatalogueModel.Store.Music_Genre" Multiplicity="0..1" />
+          <End Role="Music_Genre1" Type="MediaCatalogueModel.Store.Music_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music_Genre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Music_Genre1">
+              <PropertyRef Name="Parent_Genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Track_Media_Item">
+          <End Role="Media_Item" Type="MediaCatalogueModel.Store.Media_Item" Multiplicity="0..1" />
+          <End Role="Music_Track" Type="MediaCatalogueModel.Store.Music_Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media_Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Music_Track">
+              <PropertyRef Name="Media_Item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Track_Music_Artist">
+          <End Role="Music_Artist" Type="MediaCatalogueModel.Store.Music_Artist" Multiplicity="0..1" />
+          <End Role="Music_Track" Type="MediaCatalogueModel.Store.Music_Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music_Artist">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Music_Track">
+              <PropertyRef Name="Music_Artist_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Track_Music_Genre">
+          <End Role="Music_Genre" Type="MediaCatalogueModel.Store.Music_Genre" Multiplicity="0..1" />
+          <End Role="Music_Track" Type="MediaCatalogueModel.Store.Music_Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music_Genre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Music_Track">
+              <PropertyRef Name="Music_Genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presenter_Collection">
+          <End Role="TV_Series" Type="MediaCatalogueModel.Store.TV_Series" Multiplicity="0..1" />
+          <End Role="TV_Presenter" Type="MediaCatalogueModel.Store.TV_Presenter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_Series">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TV_Presenter">
+              <PropertyRef Name="TV_Series_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TV_SeriesCategory_TV_Category">
+          <End Role="TV_Category" Type="MediaCatalogueModel.Store.TV_Category" Multiplicity="1" />
+          <End Role="TV_SeriesCategory" Type="MediaCatalogueModel.Store.TV_SeriesCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TV_SeriesCategory">
+              <PropertyRef Name="TV_Category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TV_SeriesCategory_TV_Series">
+          <End Role="TV_Series" Type="MediaCatalogueModel.Store.TV_Series" Multiplicity="1" />
+          <End Role="TV_SeriesCategory" Type="MediaCatalogueModel.Store.TV_SeriesCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_Series">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TV_SeriesCategory">
+              <PropertyRef Name="TV_Series_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TV_SeriesMedia_Media_Item">
+          <End Role="Media_Item" Type="MediaCatalogueModel.Store.Media_Item" Multiplicity="1" />
+          <End Role="TV_SeriesMedia" Type="MediaCatalogueModel.Store.TV_SeriesMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media_Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TV_SeriesMedia">
+              <PropertyRef Name="Media_Item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TV_SeriesMedia_TV_Series">
+          <End Role="TV_Series" Type="MediaCatalogueModel.Store.TV_Series" Multiplicity="1" />
+          <End Role="TV_SeriesMedia" Type="MediaCatalogueModel.Store.TV_SeriesMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_Series">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TV_SeriesMedia">
+              <PropertyRef Name="TV_Series_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MediaCatalogueModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="MediaCatalogueEntities">
+          <EntitySet Name="Media_File" EntityType="MediaCatalogueModel.Media_File" />
+          <EntitySet Name="Media_Item" EntityType="MediaCatalogueModel.Media_Item" />
+          <EntitySet Name="Media_Location" EntityType="MediaCatalogueModel.Media_Location" />
+          <EntitySet Name="Media_Segment" EntityType="MediaCatalogueModel.Media_Segment" />
+          <EntitySet Name="Media_Type" EntityType="MediaCatalogueModel.Media_Type" />
+          <EntitySet Name="Music_Artist" EntityType="MediaCatalogueModel.Music_Artist" />
+          <EntitySet Name="Music_Genre" EntityType="MediaCatalogueModel.Music_Genre" />
+          <EntitySet Name="Music_Track" EntityType="MediaCatalogueModel.Music_Track" />
+          <EntitySet Name="TV_Category" EntityType="MediaCatalogueModel.TV_Category" />
+          <EntitySet Name="TV_Presenter" EntityType="MediaCatalogueModel.TV_Presenter" />
+          <EntitySet Name="TV_Series" EntityType="MediaCatalogueModel.TV_Series" />
+          <EntitySet Name="TV_SeriesCategory" EntityType="MediaCatalogueModel.TV_SeriesCategory" />
+          <EntitySet Name="TV_SeriesMedia" EntityType="MediaCatalogueModel.TV_SeriesMedia" />
+          <AssociationSet Name="FK_Media_File_Media_Location" Association="MediaCatalogueModel.FK_Media_File_Media_Location">
+            <End Role="Media_Location" EntitySet="Media_Location" />
+            <End Role="Media_File" EntitySet="Media_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Item_Media_File" Association="MediaCatalogueModel.FK_Media_Item_Media_File">
+            <End Role="Media_File" EntitySet="Media_File" />
+            <End Role="Media_Item" EntitySet="Media_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Item_Media_Type" Association="MediaCatalogueModel.FK_Media_Item_Media_Type">
+            <End Role="Media_Type" EntitySet="Media_Type" />
+            <End Role="Media_Item" EntitySet="Media_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Segment_Media_Item" Association="MediaCatalogueModel.FK_Media_Segment_Media_Item">
+            <End Role="Media_Item" EntitySet="Media_Item" />
+            <End Role="Media_Segment" EntitySet="Media_Segment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Track_Media_Item" Association="MediaCatalogueModel.FK_Music_Track_Media_Item">
+            <End Role="Media_Item" EntitySet="Media_Item" />
+            <End Role="Music_Track" EntitySet="Music_Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesMedia_Media_Item" Association="MediaCatalogueModel.FK_TV_SeriesMedia_Media_Item">
+            <End Role="Media_Item" EntitySet="Media_Item" />
+            <End Role="TV_SeriesMedia" EntitySet="TV_SeriesMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Segment_TV_Category" Association="MediaCatalogueModel.FK_Media_Segment_TV_Category">
+            <End Role="TV_Category" EntitySet="TV_Category" />
+            <End Role="Media_Segment" EntitySet="Media_Segment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Segment_TV_Presenter" Association="MediaCatalogueModel.FK_Media_Segment_TV_Presenter">
+            <End Role="TV_Presenter" EntitySet="TV_Presenter" />
+            <End Role="Media_Segment" EntitySet="Media_Segment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Track_Music_Artist" Association="MediaCatalogueModel.FK_Music_Track_Music_Artist">
+            <End Role="Music_Artist" EntitySet="Music_Artist" />
+            <End Role="Music_Track" EntitySet="Music_Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Genre_Music_Genre" Association="MediaCatalogueModel.FK_Music_Genre_Music_Genre">
+            <End Role="Music_Genre" EntitySet="Music_Genre" />
+            <End Role="Music_Genre1" EntitySet="Music_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Track_Music_Genre" Association="MediaCatalogueModel.FK_Music_Track_Music_Genre">
+            <End Role="Music_Genre" EntitySet="Music_Genre" />
+            <End Role="Music_Track" EntitySet="Music_Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesCategory_TV_Category" Association="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Category">
+            <End Role="TV_Category" EntitySet="TV_Category" />
+            <End Role="TV_SeriesCategory" EntitySet="TV_SeriesCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presenter_Collection" Association="MediaCatalogueModel.FK_Presenter_Collection">
+            <End Role="TV_Series" EntitySet="TV_Series" />
+            <End Role="TV_Presenter" EntitySet="TV_Presenter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesCategory_TV_Series" Association="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Series">
+            <End Role="TV_Series" EntitySet="TV_Series" />
+            <End Role="TV_SeriesCategory" EntitySet="TV_SeriesCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TV_SeriesMedia_TV_Series" Association="MediaCatalogueModel.FK_TV_SeriesMedia_TV_Series">
+            <End Role="TV_Series" EntitySet="TV_Series" />
+            <End Role="TV_SeriesMedia" EntitySet="TV_SeriesMedia" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Media_File">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Filename" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Size" Type="Int64" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="Media_Location" Relationship="MediaCatalogueModel.FK_Media_File_Media_Location" FromRole="Media_File" ToRole="Media_Location" />
+          <NavigationProperty Name="Media_Item" Relationship="MediaCatalogueModel.FK_Media_Item_Media_File" FromRole="Media_File" ToRole="Media_Item" />
+        </EntityType>
+        <EntityType Name="Media_Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Media_File" Relationship="MediaCatalogueModel.FK_Media_Item_Media_File" FromRole="Media_Item" ToRole="Media_File" />
+          <NavigationProperty Name="Media_Type" Relationship="MediaCatalogueModel.FK_Media_Item_Media_Type" FromRole="Media_Item" ToRole="Media_Type" />
+          <NavigationProperty Name="Media_Segment" Relationship="MediaCatalogueModel.FK_Media_Segment_Media_Item" FromRole="Media_Item" ToRole="Media_Segment" />
+          <NavigationProperty Name="Music_Track" Relationship="MediaCatalogueModel.FK_Music_Track_Media_Item" FromRole="Media_Item" ToRole="Music_Track" />
+          <NavigationProperty Name="TV_SeriesMedia" Relationship="MediaCatalogueModel.FK_TV_SeriesMedia_Media_Item" FromRole="Media_Item" ToRole="TV_SeriesMedia" />
+        </EntityType>
+        <EntityType Name="Media_Location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RelativePath" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DiskSignature" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DriveLetter" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="Media_File" Relationship="MediaCatalogueModel.FK_Media_File_Media_Location" FromRole="Media_Location" ToRole="Media_File" />
+        </EntityType>
+        <EntityType Name="Media_Segment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="SectionOffset" Type="Int32" />
+          <Property Name="SectionLength" Type="Int32" />
+          <Property Name="PageNumber" Type="Int32" />
+          <NavigationProperty Name="Media_Item" Relationship="MediaCatalogueModel.FK_Media_Segment_Media_Item" FromRole="Media_Segment" ToRole="Media_Item" />
+          <NavigationProperty Name="TV_Category" Relationship="MediaCatalogueModel.FK_Media_Segment_TV_Category" FromRole="Media_Segment" ToRole="TV_Category" />
+          <NavigationProperty Name="TV_Presenter" Relationship="MediaCatalogueModel.FK_Media_Segment_TV_Presenter" FromRole="Media_Segment" ToRole="TV_Presenter" />
+        </EntityType>
+        <EntityType Name="Media_Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Media_Item" Relationship="MediaCatalogueModel.FK_Media_Item_Media_Type" FromRole="Media_Type" ToRole="Media_Item" />
+        </EntityType>
+        <EntityType Name="Music_Artist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Music_Track" Relationship="MediaCatalogueModel.FK_Music_Track_Music_Artist" FromRole="Music_Artist" ToRole="Music_Track" />
+        </EntityType>
+        <EntityType Name="Music_Genre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Music_Genre1" Relationship="MediaCatalogueModel.FK_Music_Genre_Music_Genre" FromRole="Music_Genre" ToRole="Music_Genre1" />
+          <NavigationProperty Name="Music_Genre2" Relationship="MediaCatalogueModel.FK_Music_Genre_Music_Genre" FromRole="Music_Genre1" ToRole="Music_Genre" />
+          <NavigationProperty Name="Music_Track" Relationship="MediaCatalogueModel.FK_Music_Track_Music_Genre" FromRole="Music_Genre" ToRole="Music_Track" />
+        </EntityType>
+        <EntityType Name="Music_Track">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Duration" Type="Int32" />
+          <NavigationProperty Name="Media_Item" Relationship="MediaCatalogueModel.FK_Music_Track_Media_Item" FromRole="Music_Track" ToRole="Media_Item" />
+          <NavigationProperty Name="Music_Artist" Relationship="MediaCatalogueModel.FK_Music_Track_Music_Artist" FromRole="Music_Track" ToRole="Music_Artist" />
+          <NavigationProperty Name="Music_Genre" Relationship="MediaCatalogueModel.FK_Music_Track_Music_Genre" FromRole="Music_Track" ToRole="Music_Genre" />
+        </EntityType>
+        <EntityType Name="TV_Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Media_Segment" Relationship="MediaCatalogueModel.FK_Media_Segment_TV_Category" FromRole="TV_Category" ToRole="Media_Segment" />
+          <NavigationProperty Name="TV_SeriesCategory" Relationship="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Category" FromRole="TV_Category" ToRole="TV_SeriesCategory" />
+        </EntityType>
+        <EntityType Name="TV_Presenter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Media_Segment" Relationship="MediaCatalogueModel.FK_Media_Segment_TV_Presenter" FromRole="TV_Presenter" ToRole="Media_Segment" />
+          <NavigationProperty Name="TV_Series" Relationship="MediaCatalogueModel.FK_Presenter_Collection" FromRole="TV_Presenter" ToRole="TV_Series" />
+        </EntityType>
+        <EntityType Name="TV_Series">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TV_Presenter" Relationship="MediaCatalogueModel.FK_Presenter_Collection" FromRole="TV_Series" ToRole="TV_Presenter" />
+          <NavigationProperty Name="TV_SeriesCategory" Relationship="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Series" FromRole="TV_Series" ToRole="TV_SeriesCategory" />
+          <NavigationProperty Name="TV_SeriesMedia" Relationship="MediaCatalogueModel.FK_TV_SeriesMedia_TV_Series" FromRole="TV_Series" ToRole="TV_SeriesMedia" />
+        </EntityType>
+        <EntityType Name="TV_SeriesCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="TV_Category" Relationship="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Category" FromRole="TV_SeriesCategory" ToRole="TV_Category" />
+          <NavigationProperty Name="TV_Series" Relationship="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Series" FromRole="TV_SeriesCategory" ToRole="TV_Series" />
+        </EntityType>
+        <EntityType Name="TV_SeriesMedia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Media_Item" Relationship="MediaCatalogueModel.FK_TV_SeriesMedia_Media_Item" FromRole="TV_SeriesMedia" ToRole="Media_Item" />
+          <NavigationProperty Name="TV_Series" Relationship="MediaCatalogueModel.FK_TV_SeriesMedia_TV_Series" FromRole="TV_SeriesMedia" ToRole="TV_Series" />
+        </EntityType>
+        <Association Name="FK_Media_File_Media_Location">
+          <End Role="Media_Location" Type="MediaCatalogueModel.Media_Location" Multiplicity="0..1" />
+          <End Role="Media_File" Type="MediaCatalogueModel.Media_File" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Media_Item_Media_File">
+          <End Role="Media_File" Type="MediaCatalogueModel.Media_File" Multiplicity="0..1" />
+          <End Role="Media_Item" Type="MediaCatalogueModel.Media_Item" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Media_Item_Media_Type">
+          <End Role="Media_Type" Type="MediaCatalogueModel.Media_Type" Multiplicity="0..1" />
+          <End Role="Media_Item" Type="MediaCatalogueModel.Media_Item" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Media_Segment_Media_Item">
+          <End Role="Media_Item" Type="MediaCatalogueModel.Media_Item" Multiplicity="0..1" />
+          <End Role="Media_Segment" Type="MediaCatalogueModel.Media_Segment" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Music_Track_Media_Item">
+          <End Role="Media_Item" Type="MediaCatalogueModel.Media_Item" Multiplicity="0..1" />
+          <End Role="Music_Track" Type="MediaCatalogueModel.Music_Track" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TV_SeriesMedia_Media_Item">
+          <End Role="Media_Item" Type="MediaCatalogueModel.Media_Item" Multiplicity="1" />
+          <End Role="TV_SeriesMedia" Type="MediaCatalogueModel.TV_SeriesMedia" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Media_Segment_TV_Category">
+          <End Role="TV_Category" Type="MediaCatalogueModel.TV_Category" Multiplicity="0..1" />
+          <End Role="Media_Segment" Type="MediaCatalogueModel.Media_Segment" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Media_Segment_TV_Presenter">
+          <End Role="TV_Presenter" Type="MediaCatalogueModel.TV_Presenter" Multiplicity="0..1" />
+          <End Role="Media_Segment" Type="MediaCatalogueModel.Media_Segment" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Music_Track_Music_Artist">
+          <End Role="Music_Artist" Type="MediaCatalogueModel.Music_Artist" Multiplicity="0..1" />
+          <End Role="Music_Track" Type="MediaCatalogueModel.Music_Track" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Music_Genre_Music_Genre">
+          <End Role="Music_Genre" Type="MediaCatalogueModel.Music_Genre" Multiplicity="0..1" />
+          <End Role="Music_Genre1" Type="MediaCatalogueModel.Music_Genre" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Music_Track_Music_Genre">
+          <End Role="Music_Genre" Type="MediaCatalogueModel.Music_Genre" Multiplicity="0..1" />
+          <End Role="Music_Track" Type="MediaCatalogueModel.Music_Track" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TV_SeriesCategory_TV_Category">
+          <End Role="TV_Category" Type="MediaCatalogueModel.TV_Category" Multiplicity="1" />
+          <End Role="TV_SeriesCategory" Type="MediaCatalogueModel.TV_SeriesCategory" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Presenter_Collection">
+          <End Role="TV_Series" Type="MediaCatalogueModel.TV_Series" Multiplicity="0..1" />
+          <End Role="TV_Presenter" Type="MediaCatalogueModel.TV_Presenter" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TV_SeriesCategory_TV_Series">
+          <End Role="TV_Series" Type="MediaCatalogueModel.TV_Series" Multiplicity="1" />
+          <End Role="TV_SeriesCategory" Type="MediaCatalogueModel.TV_SeriesCategory" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TV_SeriesMedia_TV_Series">
+          <End Role="TV_Series" Type="MediaCatalogueModel.TV_Series" Multiplicity="1" />
+          <End Role="TV_SeriesMedia" Type="MediaCatalogueModel.TV_SeriesMedia" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="MediaCatalogueModelStoreContainer" CdmEntityContainer="MediaCatalogueEntities">
+          <EntitySetMapping Name="Media_File">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Media_File)">
+              <MappingFragment StoreEntitySet="Media_File">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media_Item">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Media_Item)">
+              <MappingFragment StoreEntitySet="Media_Item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media_Location">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Media_Location)">
+              <MappingFragment StoreEntitySet="Media_Location">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="RelativePath" ColumnName="RelativePath" />
+                <ScalarProperty Name="DiskSignature" ColumnName="DiskSignature" />
+                <ScalarProperty Name="DriveLetter" ColumnName="DriveLetter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media_Segment">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Media_Segment)">
+              <MappingFragment StoreEntitySet="Media_Segment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SectionOffset" ColumnName="SectionOffset" />
+                <ScalarProperty Name="SectionLength" ColumnName="SectionLength" />
+                <ScalarProperty Name="PageNumber" ColumnName="PageNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media_Type">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Media_Type)">
+              <MappingFragment StoreEntitySet="Media_Type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Music_Artist">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Music_Artist)">
+              <MappingFragment StoreEntitySet="Music_Artist">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Music_Genre">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Music_Genre)">
+              <MappingFragment StoreEntitySet="Music_Genre">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Music_Track">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.Music_Track)">
+              <MappingFragment StoreEntitySet="Music_Track">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV_Category">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.TV_Category)">
+              <MappingFragment StoreEntitySet="TV_Category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV_Presenter">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.TV_Presenter)">
+              <MappingFragment StoreEntitySet="TV_Presenter">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV_Series">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.TV_Series)">
+              <MappingFragment StoreEntitySet="TV_Series">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV_SeriesCategory">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.TV_SeriesCategory)">
+              <MappingFragment StoreEntitySet="TV_SeriesCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV_SeriesMedia">
+            <EntityTypeMapping TypeName="IsTypeOf(MediaCatalogueModel.TV_SeriesMedia)">
+              <MappingFragment StoreEntitySet="TV_SeriesMedia">
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Media_File_Media_Location" TypeName="MediaCatalogueModel.FK_Media_File_Media_Location" StoreEntitySet="Media_File">
+            <EndProperty Name="Media_Location">
+              <ScalarProperty Name="id" ColumnName="Media_Location_id" />
+            </EndProperty>
+            <EndProperty Name="Media_File">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Media_Location_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Media_Item_Media_File" TypeName="MediaCatalogueModel.FK_Media_Item_Media_File" StoreEntitySet="Media_Item">
+            <EndProperty Name="Media_File">
+              <ScalarProperty Name="id" ColumnName="Media_File_id" />
+            </EndProperty>
+            <EndProperty Name="Media_Item">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Media_File_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Media_Item_Media_Type" TypeName="MediaCatalogueModel.FK_Media_Item_Media_Type" StoreEntitySet="Media_Item">
+            <EndProperty Name="Media_Type">
+              <ScalarProperty Name="id" ColumnName="Media_Type_id" />
+            </EndProperty>
+            <EndProperty Name="Media_Item">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Media_Type_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Media_Segment_Media_Item" TypeName="MediaCatalogueModel.FK_Media_Segment_Media_Item" StoreEntitySet="Media_Segment">
+            <EndProperty Name="Media_Item">
+              <ScalarProperty Name="id" ColumnName="Media_Item_id" />
+            </EndProperty>
+            <EndProperty Name="Media_Segment">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Media_Item_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Music_Track_Media_Item" TypeName="MediaCatalogueModel.FK_Music_Track_Media_Item" StoreEntitySet="Music_Track">
+            <EndProperty Name="Media_Item">
+              <ScalarProperty Name="id" ColumnName="Media_Item_id" />
+            </EndProperty>
+            <EndProperty Name="Music_Track">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Media_Item_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TV_SeriesMedia_Media_Item" TypeName="MediaCatalogueModel.FK_TV_SeriesMedia_Media_Item" StoreEntitySet="TV_SeriesMedia">
+            <EndProperty Name="Media_Item">
+              <ScalarProperty Name="id" ColumnName="Media_Item_id" />
+            </EndProperty>
+            <EndProperty Name="TV_SeriesMedia">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Media_Segment_TV_Category" TypeName="MediaCatalogueModel.FK_Media_Segment_TV_Category" StoreEntitySet="Media_Segment">
+            <EndProperty Name="TV_Category">
+              <ScalarProperty Name="id" ColumnName="TV_Category_id" />
+            </EndProperty>
+            <EndProperty Name="Media_Segment">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="TV_Category_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Media_Segment_TV_Presenter" TypeName="MediaCatalogueModel.FK_Media_Segment_TV_Presenter" StoreEntitySet="Media_Segment">
+            <EndProperty Name="TV_Presenter">
+              <ScalarProperty Name="id" ColumnName="TV_Presenter_id" />
+            </EndProperty>
+            <EndProperty Name="Media_Segment">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="TV_Presenter_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Music_Track_Music_Artist" TypeName="MediaCatalogueModel.FK_Music_Track_Music_Artist" StoreEntitySet="Music_Track">
+            <EndProperty Name="Music_Artist">
+              <ScalarProperty Name="id" ColumnName="Music_Artist_id" />
+            </EndProperty>
+            <EndProperty Name="Music_Track">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Music_Artist_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Music_Genre_Music_Genre" TypeName="MediaCatalogueModel.FK_Music_Genre_Music_Genre" StoreEntitySet="Music_Genre">
+            <EndProperty Name="Music_Genre">
+              <ScalarProperty Name="id" ColumnName="Parent_Genre_id" />
+            </EndProperty>
+            <EndProperty Name="Music_Genre1">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Parent_Genre_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Music_Track_Music_Genre" TypeName="MediaCatalogueModel.FK_Music_Track_Music_Genre" StoreEntitySet="Music_Track">
+            <EndProperty Name="Music_Genre">
+              <ScalarProperty Name="id" ColumnName="Music_Genre_id" />
+            </EndProperty>
+            <EndProperty Name="Music_Track">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="Music_Genre_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TV_SeriesCategory_TV_Category" TypeName="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Category" StoreEntitySet="TV_SeriesCategory">
+            <EndProperty Name="TV_Category">
+              <ScalarProperty Name="id" ColumnName="TV_Category_id" />
+            </EndProperty>
+            <EndProperty Name="TV_SeriesCategory">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Presenter_Collection" TypeName="MediaCatalogueModel.FK_Presenter_Collection" StoreEntitySet="TV_Presenter">
+            <EndProperty Name="TV_Series">
+              <ScalarProperty Name="id" ColumnName="TV_Series_id" />
+            </EndProperty>
+            <EndProperty Name="TV_Presenter">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="TV_Series_id" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TV_SeriesCategory_TV_Series" TypeName="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Series" StoreEntitySet="TV_SeriesCategory">
+            <EndProperty Name="TV_Series">
+              <ScalarProperty Name="id" ColumnName="TV_Series_id" />
+            </EndProperty>
+            <EndProperty Name="TV_SeriesCategory">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TV_SeriesMedia_TV_Series" TypeName="MediaCatalogueModel.FK_TV_SeriesMedia_TV_Series" StoreEntitySet="TV_SeriesMedia">
+            <EndProperty Name="TV_Series">
+              <ScalarProperty Name="id" ColumnName="TV_Series_id" />
+            </EndProperty>
+            <EndProperty Name="TV_SeriesMedia">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="MediaCatalogue">
+        <EntityTypeShape EntityType="MediaCatalogueModel.Media_File" Width="1.5" PointX="3" PointY="3.75" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Media_Item" Width="1.5" PointX="5.25" PointY="3.625" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Media_Location" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Media_Segment" Width="1.5" PointX="7.5" PointY="6.5" Height="2.4140429687500005" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Media_Type" Width="1.5" PointX="3.125" PointY="6.25" Height="1.4279589843749998" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Music_Artist" Width="1.5" PointX="5.25" PointY="0.875" Height="1.4279589843749998" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Music_Genre" Width="1.5" PointX="9.875" PointY="0.875" Height="1.7566536458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.Music_Track" Width="1.5" PointX="7.5" PointY="0.875" Height="1.7566536458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.TV_Category" Width="1.5" PointX="10.5" PointY="10.25" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.TV_Presenter" Width="1.5" PointX="12.625" PointY="7.875" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.TV_Series" Width="1.5" PointX="10.5" PointY="7.75" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.TV_SeriesCategory" Width="1.5" PointX="12.75" PointY="10.375" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediaCatalogueModel.TV_SeriesMedia" Width="1.5" PointX="10.5" PointY="5.25" Height="1.4279589843749996" IsExpanded="true" />
+        <AssociationConnector Association="MediaCatalogueModel.FK_Media_File_Media_Location" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.71050048828125" />
+          <ConnectorPoint PointX="3" PointY="4.71050048828125" /></AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Media_Item_Media_File" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.71050048828125" />
+          <ConnectorPoint PointX="5.25" PointY="4.71050048828125" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Media_Item_Media_Type" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.59375" PointY="6.25" />
+          <ConnectorPoint PointX="4.59375" PointY="5.8040983072916665" />
+          <ConnectorPoint PointX="5.25" PointY="5.8040983072916665" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Media_Segment_Media_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="5.8746956380208335" />
+          <ConnectorPoint PointX="6" PointY="6.2496956380208335" />
+          <ConnectorPoint PointX="8.25" PointY="6.2496956380208335" />
+          <ConnectorPoint PointX="8.25" PointY="6.5" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Music_Track_Media_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="4.7498478190104167" />
+          <ConnectorPoint PointX="8.25" PointY="4.7498478190104167" />
+          <ConnectorPoint PointX="8.25" PointY="2.6316536458333335" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_TV_SeriesMedia_Media_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="5.5623478190104167" />
+          <ConnectorPoint PointX="10.5" PointY="5.5623478190104167" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Media_Segment_TV_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.5" PointY="11.128326822916666" />
+          <ConnectorPoint PointX="8.25" PointY="11.128326822916666" />
+          <ConnectorPoint PointX="8.25" PointY="8.91404296875" /></AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Media_Segment_TV_Presenter" ManuallyRouted="false">
+          <ConnectorPoint PointX="13.375" PointY="7.875" />
+          <ConnectorPoint PointX="13.375" PointY="7.2139794921875" />
+          <ConnectorPoint PointX="11.333333333333334" PointY="7.2139794921874989" />
+          <ConnectorPoint PointX="11.166666666666666" PointY="7.2139794921875" />
+          <ConnectorPoint PointX="9" PointY="7.2139794921875" /></AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Music_Track_Music_Artist" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="1.2516634114583334" />
+          <ConnectorPoint PointX="7.5" PointY="1.2516634114583334" /></AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Music_Genre_Music_Genre" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.406923076923077" PointY="2.6316536458333335" />
+          <ConnectorPoint PointX="10.406923076923077" PointY="2.8816536458333335" />
+          <ConnectorPoint PointX="10.853461538461538" PointY="2.8816536458333335" />
+          <ConnectorPoint PointX="10.853461538461538" PointY="2.6316536458333335" /></AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Music_Track_Music_Genre" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.875" PointY="1.7533268229166668" />
+          <ConnectorPoint PointX="9" PointY="1.7533268229166668" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="12" PointY="11.0889794921875" />
+          <ConnectorPoint PointX="12.75" PointY="11.0889794921875" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_Presenter_Collection" ManuallyRouted="false">
+          <ConnectorPoint PointX="12" PointY="8.6711531575520837" />
+          <ConnectorPoint PointX="12.625" PointY="8.6711531575520837" />
+          </AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_TV_SeriesCategory_TV_Series" ManuallyRouted="false">
+          <ConnectorPoint PointX="12" PointY="7.78125" />
+          <ConnectorPoint PointX="13.291666666666666" PointY="7.7812499999999991" />
+          <ConnectorPoint PointX="13.458333333333334" PointY="7.78125" />
+          <ConnectorPoint PointX="14.21875" PointY="7.78125" />
+          <ConnectorPoint PointX="14.21875" PointY="10.375" /></AssociationConnector>
+        <AssociationConnector Association="MediaCatalogueModel.FK_TV_SeriesMedia_TV_Series" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.25" PointY="7.75" />
+          <ConnectorPoint PointX="11.25" PointY="6.677958984375" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
