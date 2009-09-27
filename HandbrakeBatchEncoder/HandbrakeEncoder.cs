@@ -4,6 +4,7 @@ using System.IO;
 
 using HandbrakeBatchEncoder.Properties;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace HandbrakeBatchEncoder
 {
@@ -43,8 +44,6 @@ namespace HandbrakeBatchEncoder
             BackgroundEncodeFile(sender as BackgroundWorker, e);
         }
 
-
-
         private void BackgroundEncodeFile(BackgroundWorker worker, DoWorkEventArgs e)
         {
             // Make sure source file exists, but destination file doesn't (don't overwrite existing file)
@@ -69,7 +68,6 @@ namespace HandbrakeBatchEncoder
                     }
                 }
 
-
                 // Encode the file
 
                 Process handbrake = new Process();
@@ -88,30 +86,32 @@ namespace HandbrakeBatchEncoder
 
                 // Rename the output file to .avi (or original file extension)
                 string originalDestExtension = Path.GetExtension(_destinationFile);
-                File.Move(tempDestination, Path.ChangeExtension(tempDestination, originalDestExtension));
-
-                string moveToPath = Path.Combine(Settings.Default.WatchFolder, Settings.Default.CompletedInputFolder);
-
-                // Move the source file to a Completed subfolder
-                if (!Directory.Exists(moveToPath))
+                if (File.Exists(tempDestination))
                 {
-                    // Folder doesn't exist - try to create it
-                    try
+                    File.Move(tempDestination, Path.ChangeExtension(tempDestination, originalDestExtension));
+
+                    string moveToPath = Path.Combine(Settings.Default.WatchFolder, Settings.Default.CompletedInputFolder);
+
+                    // Move the source file to a Completed subfolder
+                    if (!Directory.Exists(moveToPath))
                     {
-                        Directory.CreateDirectory(moveToPath);
+                        // Folder doesn't exist - try to create it
+                        try
+                        {
+                            Directory.CreateDirectory(moveToPath);
+                        }
+                        catch (IOException)
+                        { }
                     }
-                    catch (IOException)
-                    {}
+
+                    if (Directory.Exists(moveToPath))
+                    {
+                        File.Move(_sourceFile, Path.Combine(moveToPath, Path.GetFileName(_sourceFile)));
+                    }
                 }
 
-                if (Directory.Exists(moveToPath))
-                {
-                    File.Move(_sourceFile, Path.Combine(moveToPath, Path.GetFileName(_sourceFile)));
-                }
-
+                worker.ReportProgress(100);
             }
-
-
 
         }
 
