@@ -270,3 +270,13 @@ div.bottomhyperlink img
     padding-right: .4em;
     border: none;
 }
+
+
+
+/* --  Custom Styles  -- */
+
+input.login-textbox
+{
+	font-size: 1.2em;
+	margin: 4px;
+}
