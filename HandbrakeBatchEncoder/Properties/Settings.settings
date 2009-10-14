@@ -14,9 +14,6 @@
     <Setting Name="OutputFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">D:\Temp\Complete</Value>
     </Setting>
-    <Setting Name="zEncodeSettings" Type="System.String" Scope="Application">
-      <Value Profile="(Default)"> -f avi -w 720 --deinterlace="slow" -e xvid -b 1200 -2  -a 1 -E lame -B 160 -R 0 -6 dpl2 -D 1 -v </Value>
-    </Setting>
     <Setting Name="CompletedInputFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Completed</Value>
     </Setting>

@@ -62,16 +62,6 @@ namespace HandbrakeBatchEncoder.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" -f avi -w 720 --deinterlace=\"slow\" -e xvid -b 1200 -2  -a 1 -E lame -B 160 -R 0 " +
-            "-6 dpl2 -D 1 -v ")]
-        public string zEncodeSettings {
-            get {
-                return ((string)(this["zEncodeSettings"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Completed")]
         public string CompletedInputFolder {
             get {

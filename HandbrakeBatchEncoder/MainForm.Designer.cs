@@ -108,6 +108,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.uxWatchFolderNameLabel);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Handbrake Batch Encoder";
             this.Load += new System.EventHandler(this.MainForm_Load);

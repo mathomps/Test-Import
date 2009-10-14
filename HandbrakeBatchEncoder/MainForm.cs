@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 using HandbrakeBatchEncoder.Properties;
@@ -21,6 +22,7 @@ namespace HandbrakeBatchEncoder
         BackgroundWorker _encoderWorker = new BackgroundWorker();
         HandbrakeEncoder _encoder = new HandbrakeEncoder();
 
+        private readonly Regex _filenamePattern = new Regex(@"\.(avi|mpg|mpeg)$");
 
         public MainForm()
         {
@@ -30,10 +32,9 @@ namespace HandbrakeBatchEncoder
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Setup watch on folder for file creations
-            _sourceFolderWatcher = new FileSystemWatcher(Settings.Default.WatchFolder, "*.mpg");
+            _sourceFolderWatcher = new FileSystemWatcher(Settings.Default.WatchFolder);
             _sourceFolderWatcher.EnableRaisingEvents = true;
-
-            _sourceFolderWatcher.Created += new FileSystemEventHandler(_sourceFolderWatcher_Created);
+            _sourceFolderWatcher.Created += _sourceFolderWatcher_Created;
 
             // Update source path label
             uxWatchFolderNameLabel.Text = Settings.Default.WatchFolder;
@@ -47,11 +48,12 @@ namespace HandbrakeBatchEncoder
 
             // Look for any existing files in folder
             var di = new DirectoryInfo(Settings.Default.WatchFolder);
-            var fi = di.GetFiles("*.mpg");
+            var fi = di.GetFiles();
 
             foreach (var fileInfo in fi)
             {
-                _encodeQueueFiles.Add(fileInfo.FullName);
+                //_encodeQueueFiles.Add(fileInfo.FullName);
+                AddFileToQueue(fileInfo.FullName);
             }
 
             CheckAndQueueEncoderTask();
@@ -70,11 +72,8 @@ namespace HandbrakeBatchEncoder
                     string destinationFile = Path.Combine(Settings.Default.OutputFolder, Path.GetFileNameWithoutExtension(sourceFile));
                     destinationFile = Path.ChangeExtension(destinationFile, ".avi");
 
-
                     _encoder.SourceFile = sourceFile;
                     _encoder.DestinationFile = destinationFile;
-                    //var enc = new HandbrakeEncoder(sourceFile, destinationFile);
-                    //_encoderWorker.DoWork += enc.EncodeFile;
                     _encoderWorker.RunWorkerAsync();
 
                     UpdateEncodeQueueList();
@@ -120,18 +119,26 @@ namespace HandbrakeBatchEncoder
             }
         }
 
+        private void AddFileToQueue(string filename)
+        {
+            // Make sure file is of a supported type.
+            if (_filenamePattern.IsMatch(filename))       
+            {
+                if (!_encodeQueueFiles.Contains(filename))
+                {
+                    _encodeQueueFiles.Add(filename);
+                }
+            }
+        }
+
         #endregion
 
         #region "--  FileSystemWatcher Events --"
 
         void _sourceFolderWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            if (!_encodeQueueFiles.Contains(e.FullPath))
-            {
-                _encodeQueueFiles.Add(e.FullPath);
-                CheckAndQueueEncoderTask();
-            }
-
+            AddFileToQueue(e.FullPath);
+            CheckAndQueueEncoderTask();
         }
 
         #endregion
@@ -146,7 +153,7 @@ namespace HandbrakeBatchEncoder
 
         void _encoderWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            
+
         }
 
         #endregion

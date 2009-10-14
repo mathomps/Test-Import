@@ -14,16 +14,7 @@ namespace HandbrakeBatchEncoder
         string _sourceFile;
         string _destinationFile;
 
-        public HandbrakeEncoder()
-        {
-        }
-
-        //public HandbrakeEncoder(string sourceFile, string destinationFile)
-        //{
-        //    _sourceFile = sourceFile;
-        //    _destinationFile = destinationFile;
-        //}
-
+        #region --  Constructor  --
 
         public string SourceFile
         {
@@ -37,12 +28,18 @@ namespace HandbrakeBatchEncoder
             set { _destinationFile = value; }
         }
 
+        #endregion
 
+        #region --  Public methods  --
 
         public void EncodeFile(object sender, DoWorkEventArgs e)
         {
             BackgroundEncodeFile(sender as BackgroundWorker, e);
         }
+
+        #endregion
+
+        #region -- Private Methods  --
 
         private void BackgroundEncodeFile(BackgroundWorker worker, DoWorkEventArgs e)
         {
@@ -114,6 +111,8 @@ namespace HandbrakeBatchEncoder
             }
 
         }
+
+        #endregion
 
     }
 }
