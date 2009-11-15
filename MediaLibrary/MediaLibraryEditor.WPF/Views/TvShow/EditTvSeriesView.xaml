@@ -1,0 +1,73 @@
+﻿<UserControl
+    x:Class="MediaLibraryEditor.WPF.Views.TvShow.EditTvSeriesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:tvVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.TvShow"
+    xmlns:tvView="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
+    Height="300"
+    Width="300">
+    
+    <UserControl.Resources>
+        <DataTemplate
+            DataType="{x:Type tvVM:TvSeriesViewModel}">
+            <tvView:TvSeriesDetailsView />
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
+
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            FontWeight="Bold"
+            Text="TV - Edit Series" />
+
+        <Button
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Content="Add Series"
+            Command="{Binding AddSeriesCommand}" />
+
+        <ListView
+            Grid.Row="2"
+            MinHeight="200"
+            ItemsSource="{Binding TvSeries}"
+            SelectedItem="{Binding SelectedSeries}">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Header="TV Series"
+                        DisplayMemberBinding="{Binding Description}" />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        
+        
+        <tvView:TvSeriesDetailsView
+            Grid.Row="3"
+            DataContext="{Binding SelectedSeries}" />
+        <!--<ContentControl
+            Grid.Row="3"
+            Content="{Binding SelectedSeries}"/>-->
+        
+    </Grid>
+
+</UserControl>

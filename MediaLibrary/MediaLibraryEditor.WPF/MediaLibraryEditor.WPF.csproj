@@ -40,10 +40,12 @@
     <Reference Include="System.Data.Entity">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -74,11 +76,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ModuleSelectionView.xaml">
+    <Page Include="Views\Music\MusicImportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Music\MusicImportView.xaml">
+    <Page Include="Views\TvShow\EditTvSeriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TvShow\TvSeriesDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TvShow\TvShowsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TvShow\TvShowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,9 +107,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MediaCatalogue.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ModuleSelectionViewModel.cs" />
+    <Compile Include="Models\MediaCatalogueHelper.cs" />
+    <Compile Include="ViewModels\Music\MusicImportItemViewModel.cs" />
     <Compile Include="ViewModels\Music\MusicImportViewModel.cs" />
     <Compile Include="ViewModels\OperationViewModel.cs" />
+    <Compile Include="ViewModels\TvShow\EditTvSeriesViewModel.cs" />
+    <Compile Include="ViewModels\TvShow\TvSeriesViewModel.cs" />
+    <Compile Include="ViewModels\TvShow\TvShowsViewModel.cs" />
+    <Compile Include="ViewModels\TvShow\TvShowViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -115,11 +134,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Views\ModuleSelectionView.xaml.cs">
-      <DependentUpon>ModuleSelectionView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Music\MusicImportView.xaml.cs">
       <DependentUpon>MusicImportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TvShow\EditTvSeriesView.xaml.cs">
+      <DependentUpon>EditTvSeriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TvShow\TvSeriesDetailsView.xaml.cs">
+      <DependentUpon>TvSeriesDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TvShow\TvShowsView.xaml.cs">
+      <DependentUpon>TvShowsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TvShow\TvShowView.xaml.cs">
+      <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

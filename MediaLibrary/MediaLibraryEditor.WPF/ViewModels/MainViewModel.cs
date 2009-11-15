@@ -17,18 +17,14 @@ namespace MediaLibraryEditor.WPF.ViewModels
 
         private ObservableCollection<OperationViewModel> _operations;
 
-
-        private ModuleSelectionViewModel _moduleSelection;
-
         #region --  Constructor  --
 
         public MainViewModel()
         {
-            _moduleSelection = new ModuleSelectionViewModel();
-
             _operations = new ObservableCollection<OperationViewModel>();
             _operations.Add(new Music.MusicImportViewModel());
-
+            _operations.Add(new TvShow.EditTvSeriesViewModel());
+            _operations.Add(new TvShow.TvShowsViewModel());
         }
 
         #endregion
@@ -61,11 +57,6 @@ namespace MediaLibraryEditor.WPF.ViewModels
         #endregion
 
         #region --  Properties  --
-
-        public ModuleSelectionViewModel ModuleSelection
-        {
-            get { return _moduleSelection; }
-        }
 
         public ObservableCollection<OperationViewModel> Pages
         {

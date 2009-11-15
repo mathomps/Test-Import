@@ -6,6 +6,8 @@
     xmlns:views="clr-namespace:MediaLibraryEditor.WPF.Views"
     xmlns:musicView="clr-namespace:MediaLibraryEditor.WPF.Views.Music"
     xmlns:musicVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.Music"
+    xmlns:tvVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.TvShow"
+    xmlns:tvView="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
     Title="Main Window"
     Height="400"
     Width="800">
@@ -22,6 +24,16 @@
             <musicView:MusicImportView />
         </DataTemplate>
         
+        <DataTemplate
+            DataType="{x:Type tvVM:EditTvSeriesViewModel}">
+            <tvView:EditTvSeriesView/>
+        </DataTemplate>
+
+        <DataTemplate
+            DataType="{x:Type tvVM:TvShowsViewModel}">
+            <tvView:TvShowsView />
+        </DataTemplate>
+
     </Window.Resources>
 
     <Window.InputBindings>

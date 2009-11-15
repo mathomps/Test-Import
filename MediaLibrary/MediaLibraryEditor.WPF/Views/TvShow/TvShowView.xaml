@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="MediaLibraryEditor.WPF.Views.TvShow.TvShowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="Auto" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            FontWeight="Bold"
+            Text="TV - Edit TV Show" />
+        
+        <Grid
+            Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition />
+
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Title:" />
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding Title}" />
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="Description:" />
+
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding Description}" />
+            
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="Series:" />
+
+            <ComboBox
+                Grid.Row="3"
+                Grid.Column="1"
+                ItemsSource="{Binding AllTvSeries}"
+                SelectedItem="{Binding SelectedSeries}"
+                DisplayMemberPath="Description">
+
+            </ComboBox>
+
+        </Grid>
+
+        <Button
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Command="{Binding SaveCommand}"
+            Content="Save" />
+
+    </Grid>
+</UserControl>
