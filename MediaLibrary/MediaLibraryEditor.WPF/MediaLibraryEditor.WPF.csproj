@@ -72,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,7 +84,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TvShow\EditTvSeriesView.xaml">
+    <Page Include="Views\TvShow\TvSeriesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,8 +115,8 @@
     <Compile Include="ViewModels\Music\MusicImportItemViewModel.cs" />
     <Compile Include="ViewModels\Music\MusicImportViewModel.cs" />
     <Compile Include="ViewModels\OperationViewModel.cs" />
-    <Compile Include="ViewModels\TvShow\EditTvSeriesViewModel.cs" />
-    <Compile Include="ViewModels\TvShow\TvSeriesViewModel.cs" />
+    <Compile Include="ViewModels\TvShow\TvSeriesListViewModel.cs" />
+    <Compile Include="ViewModels\TvShow\TvSeriesDetailsViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvShowsViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvShowViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -137,8 +141,8 @@
     <Compile Include="Views\Music\MusicImportView.xaml.cs">
       <DependentUpon>MusicImportView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TvShow\EditTvSeriesView.xaml.cs">
-      <DependentUpon>EditTvSeriesView.xaml</DependentUpon>
+    <Compile Include="Views\TvShow\TvSeriesListView.xaml.cs">
+      <DependentUpon>TvSeriesListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TvShow\TvSeriesDetailsView.xaml.cs">
       <DependentUpon>TvSeriesDetailsView.xaml</DependentUpon>

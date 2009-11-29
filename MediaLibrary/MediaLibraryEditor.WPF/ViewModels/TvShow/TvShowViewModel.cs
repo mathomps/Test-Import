@@ -15,57 +15,58 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         private MediaCatalogueEntities _ctx;
         private Media_Item _tvShow;
-        private EditTvSeriesViewModel _allTvSeries;
-        private TV_SeriesMedia _linkedTvSeries;
+
 
         #region --  Constructor  --
 
-        public TvShowViewModel(Media_Item tvShow)
+        /// <summary>
+        /// Creates a new instance of the TvShowViewModel, loading the Media_Item entity
+        /// with the specified id.
+        /// </summary>
+        /// <param name="id"></param>
+        public TvShowViewModel(Guid id)
         {
             _ctx = new MediaCatalogueEntities();
 
-            if (tvShow != null)
-            {
-                _tvShow = (from mi in _ctx.Media_Item
-                           where mi.id == tvShow.id
-                           select mi).FirstOrDefault();
-            }
+            _tvShow = (from mi in _ctx.Media_Item
+                       where mi.id == id
+                       select mi).FirstOrDefault();
 
             if (_tvShow == null)
             {
                 _tvShow = new Media_Item
                               {
                                   id = Guid.NewGuid(),
-                                  Description = "New TV Show"
+                                  Title = "New TV Show",
+                                  Media_Type = MediaCatalogueHelper.GetTvShowType(_ctx)
                               };
+                _ctx.AddToMedia_Item(_tvShow);
+
             }
 
-
-            _allTvSeries = new EditTvSeriesViewModel();
+            // Circular reference... :(
+            //_allTvSeries = new TvSeriesListViewModel();
 
             Title = _tvShow.Title;
             Description = _tvShow.Description;
 
-            // ToDo: Find the TV Series relating to this Media_Item
+            // Find the TV Series relating to this Media_Item
+            //var sm = (from seriesMedia in _ctx.TV_SeriesMedia
+            //                                  .Include("Media_Item")
+            //                                  .Include("TV_Series")
+            //          where seriesMedia.Media_Item.id == id
+            //          select seriesMedia);
 
-            var serieslink = from sermed in _ctx.TV_SeriesMedia.Include("TV_Series")
-                             where sermed.Media_Item.id == _tvShow.id
-                             select sermed;
+            //_tvSeriesLink = sm.FirstOrDefault();
 
-            _linkedTvSeries = serieslink.FirstOrDefault();
-
-            SelectedSeries = (from s in AllTvSeries
-                              where s.ID == _linkedTvSeries.TV_Series.id
-                              select s).FirstOrDefault();
-
-
-            //SelectedSeries = from series in AllTvSeries
-            //                 where series.Description == _tvShow.
-
+            //if (_tvSeriesLink != null && _tvSeriesLink.TV_Series != null)
+            //{
+            //    SelectedSeries = (from series in AllTvSeries
+            //                      where series.ID == _tvSeriesLink.TV_Series.id
+            //                      select series).FirstOrDefault();
+            //}
 
             // ToDo: Find the Segments relating to this show.
-
-            // Get
 
 
         }
@@ -95,6 +96,60 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         private void SaveTvShow()
         {
+            // Update the various Entity objects with changes made and save them.
+            _tvShow.Title = Title;
+            _tvShow.Description = Description;
+
+            // Find/create a TV SeriesMedia link
+
+            if (SeriesID != Guid.Empty)
+            {
+                if ((from seriesMedia in _ctx.TV_SeriesMedia
+                                             .Include("TV_Series")
+                                             .Include("Media_Item")
+                     where seriesMedia.Media_Item.id == _tvShow.id &&
+                           seriesMedia.TV_Series.id == SeriesID
+                     select seriesMedia.id).Count() == 0)
+                {
+                    // No TV_SeriesMedia record exists yet - create one
+                    var tvSeriesMedia = new TV_SeriesMedia
+                                            {
+                                                id = Guid.NewGuid(),
+                                                Media_Item = _tvShow,
+                                            };
+
+                    tvSeriesMedia.TV_Series = (from series in _ctx.TV_Series
+                                               where series.id == SeriesID
+                                               select series).FirstOrDefault();
+                }
+
+            }
+
+            //if (SelectedSeries != null)
+            //{
+            //    if (_tvSeriesLink == null)
+            //    {
+            //        // Create a new MediaItem-TV Series link
+            //        _tvSeriesLink = new TV_SeriesMedia
+            //                              {
+            //                                  id = Guid.NewGuid(),
+            //                                  Media_Item = _tvShow
+            //                              };
+            //    }
+
+            //    _tvSeriesLink.TV_Series = (from series in _ctx.TV_Series
+            //                               where series.id == SelectedSeries.ID
+            //                               select series).FirstOrDefault();
+
+            //}
+            //else
+            //{
+            //    _tvSeriesLink = null;
+            //}
+
+
+            _ctx.SaveChanges();
+
         }
 
         #endregion
@@ -131,25 +186,44 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             }
         }
 
-        public ObservableCollection<TvSeriesViewModel> AllTvSeries
-        {
-            get { return _allTvSeries.TvSeries; }
-        }
+        //public ObservableCollection<TvSeriesDetailsViewModel> AllTvSeries
+        //{
+        //    get { return _allTvSeries.TvSeries; }
+        //}
 
-        private TvSeriesViewModel _selectedSeries;
+        //private TvSeriesDetailsViewModel _selectedSeries;
 
-        public TvSeriesViewModel SelectedSeries
+        //public TvSeriesDetailsViewModel SelectedSeries
+        //{
+        //    get { return _selectedSeries; }
+        //    set
+        //    {
+        //        // ToDo: Why does this get set to null when the View loses focus??
+        //        // Note: The SelectedShow property of the TvShowsViewModel gets set to null too...
+        //        // Hack: Just prevent null from being set on the property :)
+        //        if (value != _selectedSeries && value != null)
+        //        {
+        //            _selectedSeries = value;
+        //            OnPropertyChanged("SelectedSeries");
+        //        }
+        //    }
+
+        //}
+
+        private Guid _seriesID;
+
+        public Guid SeriesID
         {
-            get { return _selectedSeries; }
+            get { return _seriesID; }
             set
             {
-                if (value != _selectedSeries)
+                if (value.Equals(_seriesID))
                 {
-                    _selectedSeries = value;
-                    OnPropertyChanged("SelectedSeries");
+                    return;
                 }
+                _seriesID = value;
+                OnPropertyChanged("SeriesID");
             }
-
         }
 
         #endregion

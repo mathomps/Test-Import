@@ -8,25 +8,26 @@
     xmlns:musicVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.Music"
     xmlns:tvVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.TvShow"
     xmlns:tvView="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
-    Title="Main Window"
-    Height="400"
-    Width="800">
+    Title=".: Media Library Editor :."
+    Height="600"
+    Width="800"
+    ResizeMode="CanResizeWithGrip">
 
     <Window.Resources>
         <!-- Allows a KeyBinding to be associated with a command defined in the View Model  -->
         <c:CommandReference
             x:Key="ExitCommandReference"
             Command="{Binding ExitCommand}" />
-        
+
         <!-- Link the Views to ViewModels -->
         <DataTemplate
             DataType="{x:Type musicVM:MusicImportViewModel}">
             <musicView:MusicImportView />
         </DataTemplate>
-        
+
         <DataTemplate
-            DataType="{x:Type tvVM:EditTvSeriesViewModel}">
-            <tvView:EditTvSeriesView/>
+            DataType="{x:Type tvVM:TvSeriesListViewModel}">
+            <tvView:TvSeriesListView />
         </DataTemplate>
 
         <DataTemplate
@@ -55,12 +56,17 @@
             </MenuItem>
         </Menu>
 
+        <StatusBar
+            DockPanel.Dock="Bottom"
+            Height="22">
+        </StatusBar>
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
-                    Width="*" />
+                    Width="Auto" />
                 <ColumnDefinition
-                    Width="3*" />
+                    Width="*" />
             </Grid.ColumnDefinitions>
             <!--<views:ModuleSelectionView
                 DataContext="{Binding ModuleSelection}" /> -->
@@ -71,7 +77,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock
-                            Text="{Binding Title}" />
+                            Text="{Binding Title}"
+                            FontSize="14"
+                            FontWeight="Bold" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -81,7 +89,9 @@
                 Grid.Column="1"
                 Background="#cccccc"
                 CornerRadius="10">
-                <ContentControl Content="{Binding ElementName=_pagesList, Path=SelectedItem}"/>
+                <ContentControl
+                    Content="{Binding ElementName=_pagesList, Path=SelectedItem}"
+                    Margin="10"/>
             </Border>
 
 

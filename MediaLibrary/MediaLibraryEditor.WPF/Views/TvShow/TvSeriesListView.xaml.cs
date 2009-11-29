@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 namespace MediaLibraryEditor.WPF.Views.TvShow
 {
     /// <summary>
-    /// Interaction logic for EditTvSeriesView.xaml
+    /// Interaction logic for TvSeriesListView.xaml
     /// </summary>
-    public partial class EditTvSeriesView : UserControl
+    public partial class TvSeriesListView : UserControl
     {
-        public EditTvSeriesView()
+        public TvSeriesListView()
         {
             InitializeComponent();
         }
+
     }
 }

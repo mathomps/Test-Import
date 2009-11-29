@@ -6,20 +6,24 @@ using System.Windows.Input;
 
 using MediaLibraryEditor.WPF.Commands;
 using MediaLibraryEditor.WPF.Models;
+using System.Collections.ObjectModel;
 
 
 namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 {
-    class TvSeriesViewModel : ViewModelBase
+    class TvSeriesDetailsViewModel : ViewModelBase
     {
         private TV_Series _series;
         private MediaCatalogueEntities _ctx;
-        private string _description;
-        private Guid _id;
+        
+        
+
+        
+
 
         #region --  Constructor  --
 
-        public TvSeriesViewModel(TV_Series series)
+        public TvSeriesDetailsViewModel(TV_Series series)
         {
             _ctx = new MediaCatalogueEntities();
 
@@ -43,6 +47,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
             Description = _series.Description;
             ID = _series.id;
+
         }
 
         #endregion
@@ -73,6 +78,8 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         #region --  Properties  --
 
+        private Guid _id;
+
         public Guid ID
         {
             get { return _id; }
@@ -86,6 +93,8 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             }
         }
 
+        private string _description;
+
         public string Description
         {
             get { return _description; }
@@ -96,6 +105,43 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
                     _description = value;
                     OnPropertyChanged("Description");
                 }
+            }
+        }
+
+        private bool _isSelected;
+
+        /// <summary>
+        /// Indicates if this series is currently selected in the ListView
+        /// </summary>
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (value != _isSelected)
+                {
+                    _isSelected = value;
+                    OnPropertyChanged("IsSelected");
+                }
+            }
+        }
+
+
+        // --  Episodes  --
+        
+        private TvShowsViewModel _tvShows;
+
+        public TvShowsViewModel Episodes
+        {
+            get
+            {
+                // Lazy Load the TV Shows ViewModel so we are not trying to load
+                // them until absolutely required.
+                if (_tvShows == null)
+                {
+                    _tvShows = new TvShowsViewModel(ID);
+                }
+                return _tvShows;
             }
         }
 

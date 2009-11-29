@@ -13,22 +13,64 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
     class TvShowsViewModel : OperationViewModel
     {
         MediaCatalogueEntities _ctx;
+        Guid _seriesID;
 
 
         #region --  Constructor  --
 
-        public TvShowsViewModel()
+        //public TvShowsViewModel()
+        //{
+        //    // Get the list of TV shows
+        //    _ctx = new MediaCatalogueEntities();
+
+        //    var tvShowType = MediaCatalogueHelper.GetTvShowType(_ctx);
+
+        //    var showIds = from mediaItem in _ctx.Media_Item
+        //                  where mediaItem.Media_Type.id == tvShowType.id
+        //                  select mediaItem.id;
+
+
+        //    //var shows = from mediaItem in _ctx.Media_Item.Include("Tv_SeriesMedia")
+        //    //            where mediaItem.TV_SeriesMedia.Count > 0
+        //    //            select mediaItem;
+
+        //    foreach (var id in showIds)
+        //    {
+        //        TvShows.Add(new TvShowViewModel(id));
+        //    }
+
+        //}
+
+        /// <summary>
+        /// Creates a new instance of the TvShowsViewModel for a particular Series.
+        /// </summary>
+        /// <param name="seriesId"></param>
+        public TvShowsViewModel(Guid seriesId)
         {
-            // Get the list of TV shows
             _ctx = new MediaCatalogueEntities();
 
-            var shows = from mediaItem in _ctx.Media_Item.Include("Tv_SeriesMedia")
-                        where mediaItem.TV_SeriesMedia.Count > 0
-                        select mediaItem;
+            SeriesID = seriesId;
 
-            foreach (var show in shows)
+            var tvShowType = MediaCatalogueHelper.GetTvShowType(_ctx);
+
+            //var showIds = from mediaItem in _ctx.Media_Item
+            //              where mediaItem.Media_Type.id == tvShowType.id
+            //              select mediaItem.id;
+
+            var showIds = from seriesMedia in _ctx.TV_SeriesMedia
+                                                  .Include("Media_Item")
+                                                  .Include("TV_Series")
+                          where seriesMedia.TV_Series.id == SeriesID 
+                          select seriesMedia.Media_Item.id;
+
+
+            //var shows = from mediaItem in _ctx.Media_Item.Include("Tv_SeriesMedia")
+            //            where mediaItem.TV_SeriesMedia.Count > 0
+            //            select mediaItem;
+
+            foreach (var id in showIds)
             {
-                TvShows.Add(new TvShowViewModel(show));
+                TvShows.Add(new TvShowViewModel(id));
             }
 
         }
@@ -58,6 +100,10 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         private void AddShow()
         {
+            var newShow = new TvShowViewModel(Guid.Empty);
+            newShow.SeriesID = SeriesID;
+            TvShows.Add(newShow);
+            SelectedShow = newShow;
         }
 
         #endregion
@@ -103,6 +149,15 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             }
         }
 
+
+        public Guid SeriesID
+        {
+            get { return _seriesID; }
+            private set
+            {
+                _seriesID = value;
+            }
+        }
 
         #endregion
 

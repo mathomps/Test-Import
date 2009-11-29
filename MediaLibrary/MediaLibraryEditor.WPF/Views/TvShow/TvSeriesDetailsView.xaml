@@ -1,36 +1,69 @@
-﻿<UserControl x:Class="MediaLibraryEditor.WPF.Views.TvShow.TvSeriesDetailsView"
+﻿<UserControl
+    x:Class="MediaLibraryEditor.WPF.Views.TvShow.TvSeriesDetailsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Height="Auto" Width="300">
+    xmlns:v="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
+    Height="Auto"
+    Width="Auto">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition
+                MinHeight="200" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="Auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
 
-        <TextBlock
+        <TabControl
             Grid.Row="0"
-            Grid.Column="0"
-            Text="Description:" />
-        
-        <TextBox
-            Grid.Row="0"
-            Grid.Column="1"
-            Text="{Binding Description}" />
-        
-        
+            Padding="8">
+
+            <TabItem
+                Header="Series Name">
+                <Grid
+                    VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Text="Description:" />
+
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding Description}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem
+                Header="Episodes">
+                    <v:TvShowsView
+                        DataContext="{Binding Episodes}"/>
+            </TabItem>
+
+            <TabItem
+                Header="Segment Categories">
+
+            </TabItem>
+
+            <TabItem
+                Header="Presenters">
+
+            </TabItem>
+
+
+
+        </TabControl>
+
+
         <Button
             Grid.Row="1"
-            Grid.Column="1"
             HorizontalAlignment="Right"
             Content="Save"
-            Command="{Binding SaveCommand}"/>
-        
+            Command="{Binding SaveCommand}" />
+
     </Grid>
+
 </UserControl>

@@ -23,8 +23,8 @@ namespace MediaLibraryEditor.WPF.ViewModels
         {
             _operations = new ObservableCollection<OperationViewModel>();
             _operations.Add(new Music.MusicImportViewModel());
-            _operations.Add(new TvShow.EditTvSeriesViewModel());
-            _operations.Add(new TvShow.TvShowsViewModel());
+            _operations.Add(new TvShow.TvSeriesListViewModel());
+            //_operations.Add(new TvShow.TvShowsViewModel());
         }
 
         #endregion

@@ -4,53 +4,48 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:tvView="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
     Height="Auto"
-    Width="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition
-                MinHeight="200" />
-            <RowDefinition
-                Height="Auto" />
-        </Grid.RowDefinitions>
+    Width="Auto">
+    <DockPanel>
+        <ToolBar
+            DockPanel.Dock="Top">
+            <Button
+                Content="Add Media"
+                Command="{Binding AddShowCommand}" />
+        </ToolBar>
 
-        <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            FontWeight="Bold"
-            Text="TV - Edit Shows" />
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*"/>
+                <ColumnDefinition
+                    Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        <Button
-            Grid.Row="1"
-            HorizontalAlignment="Right"
-            Content="Add TV Show"
-            Command="{Binding AddShowCommand}" />
+            <ListView
+                Grid.Column="0"
+                ItemsSource="{Binding TvShows}"
+                SelectedItem="{Binding SelectedShow}">
 
-        <ListView
-            Grid.Row="2"
-            MinHeight="200"
-            ItemsSource="{Binding TvShows}"
-            SelectedItem="{Binding SelectedShow}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Header="Title"
+                            DisplayMemberBinding="{Binding Title}" />
+                        <GridViewColumn
+                            Header="Description"
+                            DisplayMemberBinding="{Binding Description}" />
+                    </GridView>
+                </ListView.View>
 
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn
-                        Header="TV Show"
-                        DisplayMemberBinding="{Binding Title}" />
-                    <GridViewColumn
-                        Header="Description"
-                        DisplayMemberBinding="{Binding Description}" />
-                </GridView>
-            </ListView.View>
+            </ListView>
 
-        </ListView>
+            <tvView:TvShowView
+                Grid.Column="1"
+                DataContext="{Binding SelectedShow}" />
 
-        <tvView:TvShowView
-            Grid.Row="3"
-            DataContext="{Binding SelectedShow}" />
+        </Grid>
 
-    </Grid>
+    </DockPanel>
+
 </UserControl>

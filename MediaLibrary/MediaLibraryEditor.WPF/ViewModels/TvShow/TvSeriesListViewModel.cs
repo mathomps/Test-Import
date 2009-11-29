@@ -10,17 +10,17 @@ using System.Windows.Input;
 
 namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 {
-    class EditTvSeriesViewModel : OperationViewModel
+    class TvSeriesListViewModel : OperationViewModel
     {
 
         private MediaCatalogueEntities _ctx;
-        private ObservableCollection<TvSeriesViewModel> _seriesCollection;
-        private TvSeriesViewModel _selectedSeries;
+        private ObservableCollection<TvSeriesDetailsViewModel> _seriesCollection;
+        private TvSeriesDetailsViewModel _selectedSeries;
 
-        public EditTvSeriesViewModel()
+        public TvSeriesListViewModel()
         {
             _ctx = new MediaCatalogueEntities();
-            _seriesCollection = new ObservableCollection<TvSeriesViewModel>();
+            _seriesCollection = new ObservableCollection<TvSeriesDetailsViewModel>();
 
             var seriesColl = (from series in _ctx.TV_Series
                               orderby series.Description
@@ -28,7 +28,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
             foreach (var series in seriesColl)
             {
-                _seriesCollection.Add(new TvSeriesViewModel(series));
+                _seriesCollection.Add(new TvSeriesDetailsViewModel(series));
             }
             OnPropertyChanged("TvSeries");
 
@@ -58,7 +58,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             //                     id = Guid.NewGuid(),
             //                     Description = "New series"
             //                 };
-            var seriesVM = new TvSeriesViewModel(null);
+            var seriesVM = new TvSeriesDetailsViewModel(null);
             _seriesCollection.Add(seriesVM);
             //_ctx.AddToTV_Series(series);
             SelectedSeries = seriesVM;
@@ -70,13 +70,13 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         #region --  Properties  --
 
-        public ObservableCollection<TvSeriesViewModel> TvSeries
+        public ObservableCollection<TvSeriesDetailsViewModel> TvSeries
         {
             get { return _seriesCollection; }
         }
 
 
-        public TvSeriesViewModel SelectedSeries
+        public TvSeriesDetailsViewModel SelectedSeries
         {
             get { return _selectedSeries; }
             set
