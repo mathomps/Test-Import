@@ -9,7 +9,6 @@
         <Grid.RowDefinitions>
             <RowDefinition
                 MinHeight="200" />
-            <RowDefinition />
         </Grid.RowDefinitions>
 
         <TabControl
@@ -26,6 +25,11 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    
                     <TextBlock
                         Grid.Row="0"
                         Text="Description:" />
@@ -34,6 +38,14 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Text="{Binding Description}" />
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Content="Save"
+                        Command="{Binding SaveCommand}" />
+
                 </Grid>
             </TabItem>
 
@@ -57,12 +69,6 @@
 
         </TabControl>
 
-
-        <Button
-            Grid.Row="1"
-            HorizontalAlignment="Right"
-            Content="Save"
-            Command="{Binding SaveCommand}" />
 
     </Grid>
 

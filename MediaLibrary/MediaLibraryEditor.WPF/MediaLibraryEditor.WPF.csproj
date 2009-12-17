@@ -66,6 +66,7 @@
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -84,8 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PopupWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TvShow\TvSeriesListView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TvShow\TvSeriesDetailsView.xaml">
@@ -140,6 +143,9 @@
     </Compile>
     <Compile Include="Views\Music\MusicImportView.xaml.cs">
       <DependentUpon>MusicImportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopupWindow.xaml.cs">
+      <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TvShow\TvSeriesListView.xaml.cs">
       <DependentUpon>TvSeriesListView.xaml</DependentUpon>

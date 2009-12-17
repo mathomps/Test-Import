@@ -72,12 +72,14 @@
                 DataContext="{Binding ModuleSelection}" /> -->
             <ListBox
                 x:Name="_pagesList"
+                MinWidth="200"
                 ItemsSource="{Binding Pages}"
                 Grid.Column="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock
                             Text="{Binding Title}"
+                            Margin="8"
                             FontSize="14"
                             FontWeight="Bold" />
                     </DataTemplate>
