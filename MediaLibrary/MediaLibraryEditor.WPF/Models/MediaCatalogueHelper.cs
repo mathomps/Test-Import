@@ -25,5 +25,22 @@ namespace MediaLibraryEditor.WPF.Models
                     select mt).FirstOrDefault();
         }
 
+        public static List<TV_SeriesCategory> GetTvSeriesCategories(Guid tvSeriesId, MediaCatalogueEntities ctx)
+        {
+            return (from sc in ctx.TV_SeriesCategory
+                    where sc.TV_Series.id == tvSeriesId
+                    orderby sc.Title
+                    select sc).ToList();
+        }
+
+
+        public static List<TV_Presenter> GetTvSeriesPresenters(Guid tvSeriesId, MediaCatalogueEntities ctx)
+        {
+            return (from pres in ctx.TV_Presenter
+                    where pres.TV_Series.id == tvSeriesId
+                    orderby pres.Name
+                    select pres).ToList();
+        }
+
     }
 }

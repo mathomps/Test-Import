@@ -58,6 +58,9 @@
             <TabItem
                 Header="Segment Categories">
 
+                <v:TvSeriesCategoriesView
+                    DataContext="{Binding Categories}" />
+                
             </TabItem>
 
             <TabItem

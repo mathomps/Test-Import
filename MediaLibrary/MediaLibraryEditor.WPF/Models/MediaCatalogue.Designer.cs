@@ -22,9 +22,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("MediaCatalogueModel", "FK_Presenter_Collection", "TV_Series", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MediaLibraryEditor.WPF.Models.TV_Series), "TV_Presenter", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MediaLibraryEditor.WPF.Models.TV_Presenter))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("MediaCatalogueModel", "FK_TV_SeriesCategory_TV_Series", "TV_Series", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MediaLibraryEditor.WPF.Models.TV_Series), "TV_SeriesCategory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MediaLibraryEditor.WPF.Models.TV_SeriesCategory))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("MediaCatalogueModel", "FK_TV_SeriesMedia_TV_Series", "TV_Series", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MediaLibraryEditor.WPF.Models.TV_Series), "TV_SeriesMedia", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MediaLibraryEditor.WPF.Models.TV_SeriesMedia))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("MediaCatalogueModel", "FK_Media_Segment_TV_SeriesCategory", "TV_SeriesCategory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MediaLibraryEditor.WPF.Models.TV_SeriesCategory), "Media_Segment", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MediaLibraryEditor.WPF.Models.Media_Segment))]
 
 // Original file name:
-// Generation date: 21/11/2009 6:49:59 PM
+// Generation date: 21/12/2009 5:11:46 PM
 namespace MediaLibraryEditor.WPF.Models
 {
     
@@ -1114,6 +1115,43 @@ namespace MediaLibraryEditor.WPF.Models
                 }
             }
         }
+        /// <summary>
+        /// There are no comments for TV_SeriesCategory in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("MediaCatalogueModel", "FK_Media_Segment_TV_SeriesCategory", "TV_SeriesCategory")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public TV_SeriesCategory TV_SeriesCategory
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<TV_SeriesCategory>("MediaCatalogueModel.FK_Media_Segment_TV_SeriesCategory", "TV_SeriesCategory").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<TV_SeriesCategory>("MediaCatalogueModel.FK_Media_Segment_TV_SeriesCategory", "TV_SeriesCategory").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for TV_SeriesCategory in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<TV_SeriesCategory> TV_SeriesCategoryReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<TV_SeriesCategory>("MediaCatalogueModel.FK_Media_Segment_TV_SeriesCategory", "TV_SeriesCategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<TV_SeriesCategory>("MediaCatalogueModel.FK_Media_Segment_TV_SeriesCategory", "TV_SeriesCategory", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for MediaCatalogueModel.Media_Type in the schema.
@@ -2010,6 +2048,27 @@ namespace MediaLibraryEditor.WPF.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<TV_Series>("MediaCatalogueModel.FK_TV_SeriesCategory_TV_Series", "TV_Series", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Media_Segment in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("MediaCatalogueModel", "FK_Media_Segment_TV_SeriesCategory", "Media_Segment")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Media_Segment> Media_Segment
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Media_Segment>("MediaCatalogueModel.FK_Media_Segment_TV_SeriesCategory", "Media_Segment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Media_Segment>("MediaCatalogueModel.FK_Media_Segment_TV_SeriesCategory", "Media_Segment", value);
                 }
             }
         }

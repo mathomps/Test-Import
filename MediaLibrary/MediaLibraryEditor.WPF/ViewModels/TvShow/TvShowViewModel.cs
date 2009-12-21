@@ -44,30 +44,8 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
             }
 
-            // Circular reference... :(
-            //_allTvSeries = new TvSeriesListViewModel();
-
             Title = _tvShow.Title;
             Description = _tvShow.Description;
-
-            // Find the TV Series relating to this Media_Item
-            //var sm = (from seriesMedia in _ctx.TV_SeriesMedia
-            //                                  .Include("Media_Item")
-            //                                  .Include("TV_Series")
-            //          where seriesMedia.Media_Item.id == id
-            //          select seriesMedia);
-
-            //_tvSeriesLink = sm.FirstOrDefault();
-
-            //if (_tvSeriesLink != null && _tvSeriesLink.TV_Series != null)
-            //{
-            //    SelectedSeries = (from series in AllTvSeries
-            //                      where series.ID == _tvSeriesLink.TV_Series.id
-            //                      select series).FirstOrDefault();
-            //}
-
-            // ToDo: Find the Segments relating to this show.
-
 
         }
 
@@ -125,31 +103,34 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
             }
 
-            //if (SelectedSeries != null)
-            //{
-            //    if (_tvSeriesLink == null)
-            //    {
-            //        // Create a new MediaItem-TV Series link
-            //        _tvSeriesLink = new TV_SeriesMedia
-            //                              {
-            //                                  id = Guid.NewGuid(),
-            //                                  Media_Item = _tvShow
-            //                              };
-            //    }
-
-            //    _tvSeriesLink.TV_Series = (from series in _ctx.TV_Series
-            //                               where series.id == SelectedSeries.ID
-            //                               select series).FirstOrDefault();
-
-            //}
-            //else
-            //{
-            //    _tvSeriesLink = null;
-            //}
-
-
             _ctx.SaveChanges();
 
+        }
+
+
+        private DelegateCommand _editSegmentsCommand;
+
+        public ICommand EditSegmentsCommand
+        {
+            get
+            {
+                if (_editSegmentsCommand == null)
+                {
+                    _editSegmentsCommand = new DelegateCommand(EditSegments);
+                }
+                return _editSegmentsCommand;
+            }
+        }
+
+        private void EditSegments()
+        {
+            var tvDetails = new TvShowDetailsViewModel(_tvShow.id);
+            var popupWindow = new Views.PopupWindow
+                                  {
+                                      Title = "Edit Segments",
+                                      DataContext = tvDetails
+                                  };
+            popupWindow.Show();
         }
 
         #endregion
@@ -186,30 +167,6 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             }
         }
 
-        //public ObservableCollection<TvSeriesDetailsViewModel> AllTvSeries
-        //{
-        //    get { return _allTvSeries.TvSeries; }
-        //}
-
-        //private TvSeriesDetailsViewModel _selectedSeries;
-
-        //public TvSeriesDetailsViewModel SelectedSeries
-        //{
-        //    get { return _selectedSeries; }
-        //    set
-        //    {
-        //        // ToDo: Why does this get set to null when the View loses focus??
-        //        // Note: The SelectedShow property of the TvShowsViewModel gets set to null too...
-        //        // Hack: Just prevent null from being set on the property :)
-        //        if (value != _selectedSeries && value != null)
-        //        {
-        //            _selectedSeries = value;
-        //            OnPropertyChanged("SelectedSeries");
-        //        }
-        //    }
-
-        //}
-
         private Guid _seriesID;
 
         public Guid SeriesID
@@ -227,7 +184,6 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
         }
 
         #endregion
-
 
     }
 }

@@ -1,0 +1,128 @@
+﻿<UserControl
+    x:Class="MediaLibraryEditor.WPF.Views.TvShow.TvSeriesCategoriesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    MinWidth="300">
+    
+    <UserControl.Resources>
+
+        <DataTemplate
+            x:Key="ItemTemplate">
+
+            <StackPanel
+                Orientation="Vertical">
+                <TextBlock
+                    FontWeight="Bold"
+                    FontSize="12"
+                    Text="{Binding Title}" />
+                <TextBlock
+                    Text="{Binding Description}" />
+            </StackPanel>
+            
+        </DataTemplate>
+        
+        <DataTemplate
+            x:Key="SelectedItemTemplate">
+            <StackPanel
+                Orientation="Vertical">
+                <TextBox
+                    FontWeight="Bold"
+                    FontSize="12"
+                    Text="{Binding Title}" />
+                <TextBox
+                    Text="{Binding Description}" />
+            </StackPanel>
+        </DataTemplate>
+        
+        <Style
+            TargetType="ListViewItem"
+            x:Key="CategoryItemStyle">
+            
+            <Setter
+                Property="ContentTemplate"
+                Value="{StaticResource ItemTemplate}"/>
+                
+            <Style.Triggers>
+                <Trigger
+                    Property="IsSelected"
+                    Value="True">
+                    <Setter
+                        Property="ContentTemplate"
+                        Value="{StaticResource SelectedItemTemplate}" />
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+        
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal">
+
+            <Button
+                Command="{Binding AddCategoryCommand}"
+                Content="Add Category" />
+
+            <Button
+                Command="{Binding DeleteCategoryCommand}"
+                Content="Delete Category" />
+
+        </StackPanel>
+
+        <ListView
+            Grid.Row="1"
+            Margin="6"
+            ItemsSource="{Binding Categories}"
+            SelectedItem="{Binding SelectedCategory}"
+            ItemContainerStyle="{StaticResource CategoryItemStyle}">
+
+            <!--<ListView.ItemContainerStyle>
+                <Style
+                    TargetType="ListViewItem">
+                    <Setter
+                        Property="HorizontalContentAlignment"
+                        Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>-->
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    
+                    <DataTemplate.Triggers>
+                        
+                        <Trigger
+                            Property="IsSelected"
+                            Value="True">
+                            <Setter
+                                Property="Background"
+                                Value="#000000" />
+                            <Setter
+                                Property="Foreground"
+                                Value="#FFFFFF" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                    <StackPanel
+                        Orientation="Vertical">
+                        <TextBlock
+                            FontWeight="Bold"
+                            FontSize="12"
+                            Text="{Binding Title}" />
+                        <TextBlock
+                            Text="{Binding Description}" />
+                    </StackPanel>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>-->
+
+        </ListView>
+
+    </Grid>
+</UserControl>

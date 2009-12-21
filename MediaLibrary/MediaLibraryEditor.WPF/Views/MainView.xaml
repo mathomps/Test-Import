@@ -15,26 +15,16 @@
 
     <Window.Resources>
         <!-- Allows a KeyBinding to be associated with a command defined in the View Model  -->
-        <c:CommandReference
-            x:Key="ExitCommandReference"
-            Command="{Binding ExitCommand}" />
+        <ResourceDictionary>
+            <c:CommandReference
+                x:Key="ExitCommandReference"
+                Command="{Binding ExitCommand}" />
 
-        <!-- Link the Views to ViewModels -->
-        <DataTemplate
-            DataType="{x:Type musicVM:MusicImportViewModel}">
-            <musicView:MusicImportView />
-        </DataTemplate>
-
-        <DataTemplate
-            DataType="{x:Type tvVM:TvSeriesListViewModel}">
-            <tvView:TvSeriesListView />
-        </DataTemplate>
-
-        <DataTemplate
-            DataType="{x:Type tvVM:TvShowsViewModel}">
-            <tvView:TvShowsView />
-        </DataTemplate>
-
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/Resources/ViewMappingsDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Window.InputBindings>
@@ -44,6 +34,8 @@
             Command="{StaticResource ExitCommandReference}" />
     </Window.InputBindings>
 
+    
+    
     <DockPanel>
         <Menu
             DockPanel.Dock="Top">
@@ -60,7 +52,7 @@
             DockPanel.Dock="Bottom"
             Height="22">
         </StatusBar>
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
@@ -93,7 +85,7 @@
                 CornerRadius="10">
                 <ContentControl
                     Content="{Binding ElementName=_pagesList, Path=SelectedItem}"
-                    Margin="10"/>
+                    Margin="10" />
             </Border>
 
 

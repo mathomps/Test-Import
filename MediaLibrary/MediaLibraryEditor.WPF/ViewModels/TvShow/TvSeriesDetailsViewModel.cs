@@ -15,10 +15,10 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
     {
         private TV_Series _series;
         private MediaCatalogueEntities _ctx;
-        
-        
 
-        
+
+
+
 
 
         #region --  Constructor  --
@@ -128,7 +128,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
 
         // --  Episodes  --
-        
+
         private TvShowsViewModel _tvShows;
 
         public TvShowsViewModel Episodes
@@ -143,6 +143,22 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
                 }
                 return _tvShows;
             }
+        }
+
+
+        private TvSeriesCategoriesViewModel _categories;
+
+        public TvSeriesCategoriesViewModel Categories
+        {
+            get
+            {
+                if (_categories == null)
+                {
+                    _categories = new TvSeriesCategoriesViewModel(ID);
+                }
+                return _categories;
+            }
+
         }
 
         #endregion
