@@ -40,4 +40,17 @@
             Value="6,0" />
     </Style>
 
+
+    <LinearGradientBrush
+        x:Key="SelectedListItemBackgroundBrush"
+        EndPoint="0.5,1"
+        StartPoint="0.5,0">
+        <GradientStop
+            Color="#C3E8FF"
+            Offset="0" />
+        <GradientStop
+            Color="#67C4FF"
+            Offset="1" />
+    </LinearGradientBrush>
+    
 </ResourceDictionary>

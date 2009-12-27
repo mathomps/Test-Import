@@ -60,7 +60,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             var showIds = from seriesMedia in _ctx.TV_SeriesMedia
                                                   .Include("Media_Item")
                                                   .Include("TV_Series")
-                          where seriesMedia.TV_Series.id == SeriesID 
+                          where seriesMedia.TV_Series.id == SeriesID
                           select seriesMedia.Media_Item.id;
 
 
@@ -68,9 +68,11 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             //            where mediaItem.TV_SeriesMedia.Count > 0
             //            select mediaItem;
 
+            TvShows = new ObservableCollection<TvShow>();
+
             foreach (var id in showIds)
             {
-                TvShows.Add(new TvShowViewModel(id));
+                TvShows.Add(new TvShow(id));
             }
 
         }
@@ -100,10 +102,85 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         private void AddShow()
         {
-            var newShow = new TvShowViewModel(Guid.Empty);
-            newShow.SeriesID = SeriesID;
+            var newShow = TvShow.NewTvShow(SeriesID);
             TvShows.Add(newShow);
             SelectedShow = newShow;
+        }
+
+
+        private DelegateCommand _deleteShowCommand;
+
+        public ICommand DeleteShowCommand
+        {
+            get
+            {
+                if (_deleteShowCommand == null)
+                {
+                    _deleteShowCommand = new DelegateCommand(DeleteShow, CanDeleteShow);
+                }
+                return _deleteShowCommand;
+            }
+        }
+
+        private bool CanDeleteShow()
+        {
+            return SelectedShow != null && SelectedShow.DeleteCommand.CanExecute(null);
+        }
+
+        private void DeleteShow()
+        {
+            SelectedShow.DeleteCommand.Execute(null);
+        }
+
+
+        private DelegateCommand _saveShowCommand;
+
+        public ICommand SaveShowCommand
+        {
+            get
+            {
+                if (_saveShowCommand == null)
+                {
+                    _saveShowCommand = new DelegateCommand(SaveShow, CanSaveShow);
+                }
+                return _saveShowCommand;
+            }
+        }
+
+        private bool CanSaveShow()
+        {
+            return SelectedShow != null && SelectedShow.UpdateCommand.CanExecute(null);
+        }
+
+        private void SaveShow()
+        {
+            SelectedShow.UpdateCommand.Execute(null);
+        }
+
+
+
+        private DelegateCommand _editSegmentsCommand;
+
+        public ICommand EditSegmentsCommand
+        {
+            get
+            {
+                if (_editSegmentsCommand == null)
+                {
+                    _editSegmentsCommand = new DelegateCommand(EditSegments, CanEditSegments);
+                }
+                return _editSegmentsCommand;
+            }
+        }
+
+        private bool CanEditSegments()
+        {
+            return SelectedShow != null && SelectedShow.EditSegmentsCommand.CanExecute(null);
+        }
+
+        private void EditSegments()
+        {
+            SelectedShow.EditSegmentsCommand.Execute(null);
         }
 
         #endregion
@@ -112,43 +189,34 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         public override string Title
         {
-            get
-            {
-                return "TV - Edit Shows";
-            }
+            get { return "TV - Edit Shows"; }
         }
 
-        private TvShowViewModel _selectedShow;
+        private TvShow _selectedShow;
 
-        public TvShowViewModel SelectedShow
+        public TvShow SelectedShow
         {
             get { return _selectedShow; }
             set
             {
-                if (value != _selectedShow)
-                {
-                    _selectedShow = value;
-                    OnPropertyChanged("SelectedShow");
-                }
+                if (value == _selectedShow) { return; }
+                _selectedShow = value;
+                OnPropertyChanged("SelectedShow");
             }
         }
 
+        private ObservableCollection<TvShow> _tvShows;
 
-        private ObservableCollection<TvShowViewModel> _tvShows = new ObservableCollection<TvShowViewModel>();
-
-        public ObservableCollection<TvShowViewModel> TvShows
+        public ObservableCollection<TvShow> TvShows
         {
             get { return _tvShows; }
             set
             {
-                if (value != _tvShows)
-                {
-                    _tvShows = value;
-                    OnPropertyChanged("TvShows");
-                }
+                if (value == _tvShows) { return; }
+                _tvShows = value;
+                OnPropertyChanged("TvShows");
             }
         }
-
 
         public Guid SeriesID
         {

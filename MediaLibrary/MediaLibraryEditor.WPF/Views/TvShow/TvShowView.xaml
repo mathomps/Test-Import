@@ -50,7 +50,7 @@
             <TextBox
                 Grid.Row="0"
                 Grid.Column="1"
-                Text="{Binding Title}" />
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock
                 Grid.Row="1"
@@ -61,7 +61,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Height="48"
-                Text="{Binding Description}"
+                Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
                 TextWrapping="Wrap" />
 
         </Grid>
@@ -78,7 +78,7 @@
             
             <Button
                 HorizontalAlignment="Right"
-                Command="{Binding SaveCommand}"
+                Command="{Binding UpdateCommand}"
                 Content="Save" />
         </StackPanel>
         

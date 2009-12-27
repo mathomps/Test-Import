@@ -25,21 +25,50 @@ namespace MediaLibraryEditor.WPF.Models
                     select mt).FirstOrDefault();
         }
 
-        public static List<TV_SeriesCategory> GetTvSeriesCategories(Guid tvSeriesId, MediaCatalogueEntities ctx)
+        public static List<TvSeriesCategory> GetTvSeriesCategories(Guid tvSeriesId, MediaCatalogueEntities ctx)
         {
-            return (from sc in ctx.TV_SeriesCategory
-                    where sc.TV_Series.id == tvSeriesId
-                    orderby sc.Title
-                    select sc).ToList();
+
+            var categoryIds = from category in ctx.TV_SeriesCategory
+                              where category.TV_Series.id == tvSeriesId
+                              orderby category.Title
+                              select category.id;
+
+            var categoriesList = new List<TvSeriesCategory>();
+
+            foreach (var cId in categoryIds)
+            {
+                categoriesList.Add(new TvSeriesCategory(cId));
+            }
+
+            return categoriesList;
+
+            //return (from sc in ctx.TV_SeriesCategory
+            //        where sc.TV_Series.id == tvSeriesId
+            //        orderby sc.Title
+            //        select sc).ToList();
         }
 
 
-        public static List<TV_Presenter> GetTvSeriesPresenters(Guid tvSeriesId, MediaCatalogueEntities ctx)
+        public static List<TvSeriesPresenter> GetTvSeriesPresenters(Guid tvSeriesId, MediaCatalogueEntities ctx)
         {
-            return (from pres in ctx.TV_Presenter
-                    where pres.TV_Series.id == tvSeriesId
-                    orderby pres.Name
-                    select pres).ToList();
+
+            var presenterIds = from presenter in ctx.TV_Presenter
+                               where presenter.TV_Series.id == tvSeriesId
+                               orderby presenter.Name
+                               select presenter.id;
+            var presentersList = new List<TvSeriesPresenter>();
+
+            foreach (var pId in presenterIds)
+            {
+                presentersList.Add(new TvSeriesPresenter(pId));
+            }
+
+            return presentersList;
+
+            //return (from pres in ctx.TV_Presenter
+            //        where pres.TV_Series.id == tvSeriesId
+            //        orderby pres.Name
+            //        select pres).ToList();
         }
 
     }

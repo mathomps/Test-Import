@@ -66,9 +66,10 @@
             <TabItem
                 Header="Presenters">
 
+                <v:TvSeriesPresentersView
+                    DataContext="{Binding Presenters}" />
+
             </TabItem>
-
-
 
         </TabControl>
 

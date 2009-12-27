@@ -161,6 +161,22 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         }
 
+
+
+
+        private TvSeriesPresentersViewModel _presenters;
+
+        public TvSeriesPresentersViewModel Presenters
+        {
+            get
+            {
+                if (_presenters == null)
+                {
+                    _presenters = new TvSeriesPresentersViewModel(ID);
+                }
+                return _presenters; }
+        }
+
         #endregion
 
     }

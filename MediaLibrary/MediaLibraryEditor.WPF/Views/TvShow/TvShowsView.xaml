@@ -11,6 +11,18 @@
             <Button
                 Content="Add Media"
                 Command="{Binding AddShowCommand}" />
+            <Separator />
+            <Button
+                Content="Delete Media"
+                Command="{Binding DeleteShowCommand}" />
+            <Separator />
+            <Button
+                Content="Save"
+                Command="{Binding SaveShowCommand}" />
+            <Separator />
+            <Button
+                Content="Edit Segments..."
+                Command="{Binding EditSegmentsCommand}" />
         </ToolBar>
 
         <Grid>

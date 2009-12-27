@@ -36,11 +36,11 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
                            orderby seg.SectionOffset
                            select seg.id;
 
-            Segments = new ObservableCollection<TvShowSegmentViewModel>();
+            Segments = new ObservableCollection<TvShowSegment>();
 
             foreach (var seg in segmentIds)
             {
-                Segments.Add(new TvShowSegmentViewModel(seg));
+                Segments.Add(new TvShowSegment(seg));
             }
 
         }
@@ -78,12 +78,9 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         private void AddSegment()
         {
-           
-            var seg = TvShowSegmentViewModel.NewSegment(_tvShow.id);
-
+            var seg = TvShowSegment.NewSegment(_tvShow.id);
             Segments.Add(seg);
             SelectedSegment = seg;
-
         }
 
 
@@ -95,17 +92,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
         private void DeleteSegment()
         {
 
-            // Delete from the DB
-            var seg = (from segs in _ctx.Media_Segment
-                       where segs.id == SelectedSegment.ID
-                       select segs).FirstOrDefault();
-
-            if (seg != null)
-            {
-                _ctx.DeleteObject(seg);
-                _ctx.SaveChanges();
-            }
-
+            SelectedSegment.DeleteCommand.Execute(null);
 
             // Remove from the Segments collection
             Segments.Remove(SelectedSegment);
@@ -144,9 +131,9 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
         }
 
 
-        private ObservableCollection<TvShowSegmentViewModel> _segments;
+        private ObservableCollection<TvShowSegment> _segments;
 
-        public ObservableCollection<TvShowSegmentViewModel> Segments
+        public ObservableCollection<TvShowSegment> Segments
         {
             get { return _segments; }
             set
@@ -158,9 +145,9 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
         }
 
 
-        private TvShowSegmentViewModel _selectedSegment;
+        private TvShowSegment _selectedSegment;
 
-        public TvShowSegmentViewModel SelectedSegment
+        public TvShowSegment SelectedSegment
         {
             get { return _selectedSegment; }
             set

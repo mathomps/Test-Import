@@ -16,15 +16,67 @@
     <Window.Resources>
         <!-- Allows a KeyBinding to be associated with a command defined in the View Model  -->
         <ResourceDictionary>
-            <c:CommandReference
-                x:Key="ExitCommandReference"
-                Command="{Binding ExitCommand}" />
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="/Resources/ViewMappingsDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <c:CommandReference
+                x:Key="ExitCommandReference"
+                Command="{Binding ExitCommand}" />
+
+            <Style
+                x:Key="SimpleListBoxItem"
+                TargetType="ListBoxItem">
+
+                <Setter
+                    Property="FocusVisualStyle"
+                    Value="{x:Null}" />
+
+                <Setter
+                    Property="Template">
+
+                    <Setter.Value>
+
+                        <ControlTemplate
+                            TargetType="ListBoxItem">
+
+                            <Border
+                                Name="Border"
+                                Padding="6"
+                                CornerRadius="5"
+                                SnapsToDevicePixels="True">
+
+                                <ContentPresenter />
+
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger
+                                    Property="IsSelected"
+                                    Value="True">
+
+                                    <Setter
+                                        TargetName="Border"
+                                        Property="Background"
+                                        Value="{StaticResource SelectedListItemBackgroundBrush}" />
+
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+
+                    </Setter.Value>
+
+                </Setter>
+
+            </Style>
+
         </ResourceDictionary>
+
     </Window.Resources>
 
     <Window.InputBindings>
@@ -34,8 +86,8 @@
             Command="{StaticResource ExitCommandReference}" />
     </Window.InputBindings>
 
-    
-    
+
+
     <DockPanel>
         <Menu
             DockPanel.Dock="Top">
@@ -66,14 +118,14 @@
                 x:Name="_pagesList"
                 MinWidth="200"
                 ItemsSource="{Binding Pages}"
-                Grid.Column="0">
+                Grid.Column="0"
+                ItemContainerStyle="{StaticResource SimpleListBoxItem}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock
                             Text="{Binding Title}"
-                            Margin="8"
-                            FontSize="14"
-                            FontWeight="Bold" />
+                            FontSize="18"
+                            FontFamily="Segoe UI Italic"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
