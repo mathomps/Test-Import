@@ -40,15 +40,20 @@ namespace MediaLibraryEditor.WPF.Models
                 StartOffset = _segment.SectionOffset;
                 SectionLength = _segment.SectionLength;
 
-                // ToDo: Presenter and Category should be their own Business Objects, not Entities...
-                Presenter = (from pres in Presenters
-                             where pres.ID == _segment.TV_Presenter.id
-                             select pres).FirstOrDefault();
-                                //_segment.TV_Presenter;
-                Category = (from cat in Categories
-                            where cat.ID == _segment.TV_SeriesCategory.id
-                            select cat).FirstOrDefault();
-                                //_segment.TV_SeriesCategory;
+                if (_segment.TV_Presenter != null)
+                {
+                    Presenter = (from pres in Presenters
+                                 where pres.ID == _segment.TV_Presenter.id
+                                 select pres).FirstOrDefault();
+                }
+
+                if (_segment.TV_SeriesCategory != null)
+                {
+                    Category = (from cat in Categories
+                                where cat.ID == _segment.TV_SeriesCategory.id
+                                select cat).FirstOrDefault();
+                }
+
             }
 
             IsDirty = false;
@@ -62,30 +67,6 @@ namespace MediaLibraryEditor.WPF.Models
             IsNew = true;
             IsDirty = false;
         }
-
-        #endregion
-
-        #region --  ICommand  --
-
-        //private DelegateCommand _updateCommand;
-
-        //public ICommand UpdateCommand
-        //{
-        //    get
-        //    {
-        //        if (_updateCommand == null)
-        //        {
-        //            _updateCommand = new DelegateCommand(Update, CanUpdate);
-        //        }
-        //        return _updateCommand;
-        //    }
-        //}
-
-        //private bool CanUpdate()
-        //{
-        //    return true;
-        //}
-
 
         #endregion
 

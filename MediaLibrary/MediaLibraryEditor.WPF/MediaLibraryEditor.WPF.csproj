@@ -125,6 +125,8 @@
     </Compile>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\CommandReference.cs" />
+    <Compile Include="Converters\TimestampConverter.cs" />
+    <Compile Include="Models\BusinessObjectCollectionBase.cs" />
     <Compile Include="Models\MediaCatalogue.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +145,7 @@
     <Compile Include="ViewModels\TvShow\TvSeriesPresentersViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvShowDetailsViewModel.cs" />
     <Compile Include="Models\TvShowSegment.cs" />
+    <Compile Include="ViewModels\TvShow\TvShowSegmentViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvShowsViewModel.cs" />
     <Compile Include="Models\TvShow.cs" />
     <Compile Include="Views\MainView.xaml.cs">

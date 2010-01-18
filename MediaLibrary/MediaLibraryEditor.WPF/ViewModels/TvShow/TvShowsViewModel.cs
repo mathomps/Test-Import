@@ -130,6 +130,8 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
         private void DeleteShow()
         {
             SelectedShow.DeleteCommand.Execute(null);
+            TvShows.Remove(SelectedShow);
+            SelectedShow = null;
         }
 
 

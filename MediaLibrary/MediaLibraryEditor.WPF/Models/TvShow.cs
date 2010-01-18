@@ -32,7 +32,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
                                   .Include("TV_SeriesMedia")
                        where mi.id == id
                        select mi).FirstOrDefault();
-          
+
             if (_tvShow.TV_SeriesMedia != null)
             {
                 var seriesMediaId = _tvShow.TV_SeriesMedia.FirstOrDefault().id;
@@ -155,6 +155,34 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
             }
         }
 
+
+        // ToDo: Implement a generic 'Lazy<>' class for this kind of thing...
+        private bool _hasSegments;
+        private bool _hasSegmentsChecked;
+
+        // ToDo: This is flawed anyway - check is only ever done once, but can easily add a segment after this has been checked.
+        /// <summary>
+        /// Identifies whether this TV Show has any attached segments.
+        /// </summary>
+        public bool HasSegments
+        {
+            get
+            {
+                if (!_hasSegmentsChecked)
+                {
+                    if (_ctx != null)
+                    {
+                        var segCount = (from seg in _ctx.Media_Segment
+                                        where seg.Media_Item.id == ID
+                                        select seg).Count();
+                        _hasSegments = segCount > 0;
+                    }
+                    _hasSegmentsChecked = true;
+                }
+                return _hasSegments;
+            }
+        }
+
         #endregion
 
         #region --  Methods  --
@@ -216,11 +244,36 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 
         }
 
+        protected override bool CanDelete()
+        {
+            return base.CanDelete() && !HasSegments;
+        }
+
         protected override CommandResult Delete()
         {
-            // Delete any TV_SeriesMedia records for this media
+            // ToDo: Delete any TV_SeriesMedia records for this media
 
-            return CommandResult.NotImplemented;
+            if (_ctx == null) { return CommandResult.Failed; }
+
+            var serMedias = from serMed in _ctx.TV_SeriesMedia
+                            where serMed.Media_Item.id == ID
+                            select serMed;
+
+            foreach (var sm in serMedias)
+            {
+                _ctx.DeleteObject(sm);
+            }
+
+            try
+            {
+                _ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return CommandResult.Failed;
+            }
+
+            return CommandResult.Successful;
 
         }
 
