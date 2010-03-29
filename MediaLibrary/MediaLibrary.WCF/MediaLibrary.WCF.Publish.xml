@@ -1,0 +1,8 @@
+<publishData>
+  <publishTarget publishUrl="\\webhost04\websites\_virtual\MediaCatalogueService\">
+    <file relUrl="bin/MediaLibrary.WCF.dll" publishTime="03/23/2010 21:36:18" />
+    <file relUrl="bin/MediaLibrary.WCF.pdb" publishTime="03/23/2010 21:36:18" />
+    <file relUrl="MusicVideoService.svc" publishTime="03/23/2010 20:39:21" />
+    <file relUrl="Web.config" publishTime="03/23/2010 20:37:27" />
+  </publishTarget>
+</publishData>

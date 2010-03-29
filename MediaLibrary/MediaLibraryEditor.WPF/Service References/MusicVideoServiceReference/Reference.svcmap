@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="09a928e5-7581-43e5-8e21-f06088116433" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1469/MusicVideoService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MusicVideoService.xsd" MetadataType="Schema" ID="d763d831-c561-41c2-bb1f-9d9fb4a254d3" SourceId="1" SourceUrl="http://localhost:1469/MusicVideoService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MusicVideoService.wsdl" MetadataType="Wsdl" ID="572db6e7-9d14-4eb1-96bd-9cf7ab331b93" SourceId="1" SourceUrl="http://localhost:1469/MusicVideoService.svc?wsdl" />
+    <MetadataFile FileName="MusicVideoService.disco" MetadataType="Disco" ID="0ed5029e-c3ab-462f-83a0-3d86f6621c1b" SourceId="1" SourceUrl="http://localhost:1469/MusicVideoService.svc?disco" />
+    <MetadataFile FileName="MusicVideoService1.xsd" MetadataType="Schema" ID="fce017b5-a03e-465f-a7e9-4a977969b77b" SourceId="1" SourceUrl="http://localhost:1469/MusicVideoService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MusicVideoService2.xsd" MetadataType="Schema" ID="a82ccf53-a787-44af-9d6d-747cef233226" SourceId="1" SourceUrl="http://localhost:1469/MusicVideoService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

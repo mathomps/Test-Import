@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Collections.ObjectModel;
+
+using MediaLibraryEditor.WPF.ViewModels;
 
 namespace MediaLibraryEditor.WPF.Models
 {
-    public abstract class BusinessObjectCollectionBase
+    public abstract class BusinessObjectCollectionBase : ViewModelBase
     {
 
         public void BusinessObjectBase()

@@ -45,6 +45,9 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -136,8 +139,14 @@
     <Compile Include="Models\TvSeriesCategory.cs" />
     <Compile Include="Models\TvSeriesPresenter.cs" />
     <Compile Include="Models\BusinessObjectBase.cs" />
+    <Compile Include="Service References\MusicVideoServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Music\MusicImportItemViewModel.cs" />
     <Compile Include="ViewModels\Music\MusicImportViewModel.cs" />
+    <Compile Include="ViewModels\Music\MusicVideosViewModel.cs" />
     <Compile Include="ViewModels\OperationViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvSeriesCategoriesViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvSeriesListViewModel.cs" />
@@ -207,7 +216,41 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Service References\MusicVideoServiceReference\MusicVideoService.wsdl" />
+    <None Include="Service References\MusicVideoServiceReference\MusicVideoService.xsd" />
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MusicVideoServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MusicVideoServiceReference\MusicVideoService.disco" />
+    <None Include="Service References\MusicVideoServiceReference\MusicVideoService1.xsd" />
+    <None Include="Service References\MusicVideoServiceReference\MusicVideoService2.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MusicVideoServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MusicVideoServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MusicVideoServiceReference\MediaLibraryEditor.WPF.MusicVideoServiceReference.MusicArtist.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MusicVideoServiceReference\MediaLibraryEditor.WPF.MusicVideoServiceReference.MusicGenre.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MusicVideoServiceReference\MediaLibraryEditor.WPF.MusicVideoServiceReference.MusicVideoClip.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MusicVideoServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

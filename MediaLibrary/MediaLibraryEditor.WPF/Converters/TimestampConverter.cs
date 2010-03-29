@@ -6,6 +6,7 @@ using System.Windows.Data;
 
 namespace MediaLibraryEditor.WPF.Converters
 {
+    [ValueConversion(typeof(int), typeof(string))]
     class TimestampConverter : IValueConverter
     {
 
@@ -19,7 +20,6 @@ namespace MediaLibraryEditor.WPF.Converters
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        [ValueConversion(typeof(int),typeof(string))]
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             int timestamp = (int)value;

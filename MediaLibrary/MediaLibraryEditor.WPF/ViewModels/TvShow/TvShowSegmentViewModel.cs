@@ -22,7 +22,7 @@ namespace MediaLibraryEditor.WPF.ViewModels.TvShow
         {
             _model = new TvShowSegment(seriesID);
 
-            _startOffset = (new TimeSpan(_model.StartOffset)).ToString();
+            _startOffset = (new TimeSpan(_model.StartOffset.Value)).ToString();
 
         }
 
