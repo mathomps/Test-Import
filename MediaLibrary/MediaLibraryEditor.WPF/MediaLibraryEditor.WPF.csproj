@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=3.0.0.31869, Culture=neutral, PublicKeyToken=3e875cdb3903c512, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WPF35SP1\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=3.0.0.31868, Culture=neutral, PublicKeyToken=48c5515dce1bf64d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WPF35SP1\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -49,6 +57,10 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WPF35SP1\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -87,6 +99,10 @@
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicVideo\MusicVideosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Music\MusicImportView.xaml">
       <SubType>Designer</SubType>
@@ -129,7 +145,9 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\CommandReference.cs" />
     <Compile Include="Converters\TimestampConverter.cs" />
-    <Compile Include="Models\BusinessObjectCollectionBase.cs" />
+    <Compile Include="Models\BusinessObjectBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\MediaCatalogue.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,16 +156,15 @@
     <Compile Include="Models\MediaCatalogueHelper.cs" />
     <Compile Include="Models\TvSeriesCategory.cs" />
     <Compile Include="Models\TvSeriesPresenter.cs" />
-    <Compile Include="Models\BusinessObjectBase.cs" />
     <Compile Include="Service References\MusicVideoServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Music\MusicImportItemViewModel.cs" />
-    <Compile Include="ViewModels\Music\MusicImportViewModel.cs" />
-    <Compile Include="ViewModels\Music\MusicVideosViewModel.cs" />
-    <Compile Include="ViewModels\OperationViewModel.cs" />
+    <Compile Include="ViewModels\Music\BulkImport\MusicImportItemViewModel.cs" />
+    <Compile Include="ViewModels\Music\BulkImport\MusicImportViewModel.cs" />
+    <Compile Include="ViewModels\MusicVideo\MusicVideosViewModel.cs" />
+    <Compile Include="ViewModels\OperationViewModelBase.cs" />
     <Compile Include="ViewModels\TvShow\TvSeriesCategoriesViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvSeriesListViewModel.cs" />
     <Compile Include="ViewModels\TvShow\TvSeriesDetailsViewModel.cs" />
@@ -175,6 +192,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Views\MusicVideo\MusicVideosView.xaml.cs">
+      <DependentUpon>MusicVideosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Music\MusicImportView.xaml.cs">
       <DependentUpon>MusicImportView.xaml</DependentUpon>

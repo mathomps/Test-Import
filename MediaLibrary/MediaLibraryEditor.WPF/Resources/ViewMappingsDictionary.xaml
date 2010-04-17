@@ -4,12 +4,19 @@
     xmlns:tvView="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
     xmlns:tvVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.TvShow"
     xmlns:musicVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.Music"
-    xmlns:musicView="clr-namespace:MediaLibraryEditor.WPF.Views.Music">
+    xmlns:musicView="clr-namespace:MediaLibraryEditor.WPF.Views.Music"
+    xmlns:musicVideoVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.MusicVideo"
+    xmlns:musicVideoView="clr-namespace:MediaLibraryEditor.WPF.Views.MusicVideo">
 
     <!-- Link the Views to ViewModels -->
     <DataTemplate
         DataType="{x:Type musicVM:MusicImportViewModel}">
         <musicView:MusicImportView />
+    </DataTemplate>
+    
+    <DataTemplate
+        DataType="{x:Type musicVideoVM:MusicVideosViewModel}">
+        <musicVideoView:MusicVideosView />
     </DataTemplate>
 
     <DataTemplate

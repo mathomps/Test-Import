@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
-
-
-using System.IO;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 using MediaLibraryEditor.WPF.Commands;
 using MediaLibraryEditor.WPF.Models;
 
 namespace MediaLibraryEditor.WPF.ViewModels.Music
 {
-    public class MusicImportViewModel : OperationViewModel
+    public class MusicImportViewModel : OperationViewModelBase
     {
 
         private MediaCatalogueEntities _ctx;

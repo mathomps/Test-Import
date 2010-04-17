@@ -5,7 +5,7 @@
     xmlns:c="clr-namespace:MediaLibraryEditor.WPF.Commands"
     xmlns:views="clr-namespace:MediaLibraryEditor.WPF.Views"
     xmlns:musicView="clr-namespace:MediaLibraryEditor.WPF.Views.Music"
-    xmlns:musicVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.Music"
+    xmlns:musicVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.MusicVideo"
     xmlns:tvVM="clr-namespace:MediaLibraryEditor.WPF.ViewModels.TvShow"
     xmlns:tvView="clr-namespace:MediaLibraryEditor.WPF.Views.TvShow"
     Title=".: Media Library Editor :."

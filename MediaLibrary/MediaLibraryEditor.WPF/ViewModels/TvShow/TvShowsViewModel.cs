@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 {
-    class TvShowsViewModel : OperationViewModel
+    class TvShowsViewModel : OperationViewModelBase
     {
         MediaCatalogueEntities _ctx;
         Guid _seriesID;

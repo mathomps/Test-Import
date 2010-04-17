@@ -15,16 +15,16 @@ namespace MediaLibraryEditor.WPF.ViewModels
     public class MainViewModel : ViewModelBase
     {
 
-        private ObservableCollection<OperationViewModel> _operations;
+        private ObservableCollection<OperationViewModelBase> _operations;
 
         #region --  Constructor  --
 
         public MainViewModel()
         {
-            _operations = new ObservableCollection<OperationViewModel>();
+            _operations = new ObservableCollection<OperationViewModelBase>();
             _operations.Add(new Music.MusicImportViewModel());
             _operations.Add(new TvShow.TvSeriesListViewModel());
-            _operations.Add(new Music.MusicVideosViewModel());
+            _operations.Add(new MusicVideo.MusicVideosViewModel());
             //_operations.Add(new TvShow.TvShowsViewModel());
         }
 
@@ -59,7 +59,7 @@ namespace MediaLibraryEditor.WPF.ViewModels
 
         #region --  Properties  --
 
-        public ObservableCollection<OperationViewModel> Pages
+        public ObservableCollection<OperationViewModelBase> Pages
         {
             get { return _operations; }
         }

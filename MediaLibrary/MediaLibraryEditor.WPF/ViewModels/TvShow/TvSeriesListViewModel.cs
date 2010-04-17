@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace MediaLibraryEditor.WPF.ViewModels.TvShow
 {
-    class TvSeriesListViewModel : OperationViewModel
+    class TvSeriesListViewModel : OperationViewModelBase
     {
 
         private MediaCatalogueEntities _ctx;
