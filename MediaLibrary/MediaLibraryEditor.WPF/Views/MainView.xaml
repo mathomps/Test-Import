@@ -21,7 +21,7 @@
                 <ResourceDictionary
                     Source="/Resources/ViewMappingsDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <c:CommandReference
                 x:Key="ExitCommandReference"
                 Command="{Binding ExitCommand}" />
@@ -125,16 +125,32 @@
                         <TextBlock
                             Text="{Binding Title}"
                             FontSize="18"
-                            FontFamily="Segoe UI Italic"/>
+                            FontFamily="Segoe UI Italic" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
 
             <Border
-                Grid.Column="1"
-                Background="#cccccc"
-                CornerRadius="10">
+                Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                            <GradientStop
+                                Offset="0"
+                                Color="#ffffff" />
+                            <GradientStop
+                                Offset="0.5"
+                                Color="#bbbbcc" />
+                        <GradientStop
+                            Offset="0.8"
+                            Color="#bbbbcc" />
+                        <GradientStop
+                            Offset="1"
+                            Color="#8888aa" />
+                    </LinearGradientBrush>
+                </Border.Background>
                 <ContentControl
                     Content="{Binding ElementName=_pagesList, Path=SelectedItem}"
                     Margin="10" />

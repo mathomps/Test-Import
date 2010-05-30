@@ -88,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\ResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +148,7 @@
     </Compile>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\CommandReference.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\TimestampConverter.cs" />
     <Compile Include="Models\BusinessObjectBase.cs">
       <SubType>Code</SubType>
@@ -154,6 +159,10 @@
       <DependentUpon>MediaCatalogue.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MediaCatalogueHelper.cs" />
+    <Compile Include="Models\MediaFileInfo.cs" />
+    <Compile Include="Models\MusicVideo\Artist.cs" />
+    <Compile Include="Models\MusicVideo\MusicVideoItem.cs" />
+    <Compile Include="Models\MusicVideo\MusicVideoRepository.cs" />
     <Compile Include="Models\TvSeriesCategory.cs" />
     <Compile Include="Models\TvSeriesPresenter.cs" />
     <Compile Include="Service References\MusicVideoServiceReference\Reference.cs">
