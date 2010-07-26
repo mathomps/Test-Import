@@ -21,5 +21,10 @@ namespace MediaLibraryEditor.WPF.Models.MusicVideo
         public MediaFileInfo FileInfo { get; set; }
 
 
+        public bool HasMediaFileInformation()
+        {
+            return FileInfo != null;
+        }
+
     }
 }

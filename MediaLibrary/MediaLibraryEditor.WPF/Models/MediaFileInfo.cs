@@ -9,8 +9,8 @@ namespace MediaLibraryEditor.WPF.Models
     {
 
         public string Filename { get; set; }
-        public long Size { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public long? Size { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
     }
 }
