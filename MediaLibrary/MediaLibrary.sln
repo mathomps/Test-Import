@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLibrary.Web", "MediaLibrary.Web\MediaLibrary.Web.csproj", "{EA2A6990-37D5-4927-B4C3-890B40EB03C8}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{00000000-0000-0000-0000-000000000000}") = "MediaLibrary.Web", "MediaLibrary.Web\MediaLibrary.Web.csproj", "{EA2A6990-37D5-4927-B4C3-890B40EB03C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLibraryEditor", "MediaLibraryEditor\MediaLibraryEditor.csproj", "{2038FD0A-C659-4C8B-AC14-EE8EF3F20BCC}"
 EndProject
