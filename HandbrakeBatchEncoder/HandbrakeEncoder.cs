@@ -51,7 +51,7 @@ namespace HandbrakeBatchEncoder
                 {
                     try
                     {
-                        FileStream fs = new FileStream(_sourceFile, FileMode.Open, FileAccess.Read, FileShare.None);
+                        var fs = new FileStream(_sourceFile, FileMode.Open, FileAccess.Read, FileShare.None);
                         fs.Close();
                         break;
                     }
@@ -67,19 +67,29 @@ namespace HandbrakeBatchEncoder
 
                 // Encode the file
 
-                Process handbrake = new Process();
-                string tempDestination = Path.ChangeExtension(_destinationFile, ".tmp");
+                var handbrake = new Process();
+                var tempDestination = Path.ChangeExtension(_destinationFile, ".tmp");
 
-                string filenameArgs = string.Format(" -i \"{0}\" -o \"{1}\"", _sourceFile, tempDestination);
+                var filenameArgs = string.Format(" -i \"{0}\" -o \"{1}\"", _sourceFile, tempDestination);
 
                 var startInfo = handbrake.StartInfo;
                 startInfo.FileName = Settings.Default.HandbrakeCliPath;
                 startInfo.WorkingDirectory = Path.GetDirectoryName(Settings.Default.HandbrakeCliPath);
                 startInfo.Arguments = Settings.Default.EncodeSettings + filenameArgs;
+                //startInfo.UseShellExecute = false;
+                //startInfo.RedirectStandardError = true;
+
 
                 handbrake.Start();
-                handbrake.PriorityClass = ProcessPriorityClass.Idle;
-                handbrake.WaitForExit();
+                if (!handbrake.HasExited)
+                {
+                    //handbrake.PriorityClass = ProcessPriorityClass.Idle;
+                    handbrake.WaitForExit();
+                }
+                else
+                {
+                    //var error = handbrake.StandardError.ReadToEnd();
+                }
 
                 // Rename the output file to .avi (or original file extension)
                 string originalDestExtension = Path.GetExtension(_destinationFile);

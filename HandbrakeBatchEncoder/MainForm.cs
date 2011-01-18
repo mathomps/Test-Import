@@ -16,11 +16,12 @@ namespace HandbrakeBatchEncoder
     public partial class MainForm : Form
     {
         FileSystemWatcher _sourceFolderWatcher;
-        List<string> _encodeQueueFiles = new List<string>();
+        readonly List<string> _encodeQueueFiles = new List<string>();
 
         delegate void UpdateEncodeQueueListDelegate();
-        BackgroundWorker _encoderWorker = new BackgroundWorker();
-        HandbrakeEncoder _encoder = new HandbrakeEncoder();
+
+        readonly BackgroundWorker _encoderWorker = new BackgroundWorker { WorkerReportsProgress = true };
+        readonly HandbrakeEncoder _encoder = new HandbrakeEncoder();
 
         private readonly Regex _filenamePattern = new Regex(@"\.(avi|mpg|mpeg)$");
 
@@ -32,8 +33,7 @@ namespace HandbrakeBatchEncoder
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Setup watch on folder for file creations
-            _sourceFolderWatcher = new FileSystemWatcher(Settings.Default.WatchFolder);
-            _sourceFolderWatcher.EnableRaisingEvents = true;
+            _sourceFolderWatcher = new FileSystemWatcher(Settings.Default.WatchFolder) { EnableRaisingEvents = true };
             _sourceFolderWatcher.Created += _sourceFolderWatcher_Created;
 
             // Update source path label
@@ -41,8 +41,8 @@ namespace HandbrakeBatchEncoder
 
 
             // Hook up Background Worker Events
-            _encoderWorker.ProgressChanged += new ProgressChangedEventHandler(_encoderWorker_ProgressChanged);
-            _encoderWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_encoderWorker_RunWorkerCompleted);
+            _encoderWorker.ProgressChanged += _encoderWorker_ProgressChanged;
+            _encoderWorker.RunWorkerCompleted += _encoderWorker_RunWorkerCompleted;
             _encoderWorker.DoWork += _encoder.EncodeFile;
 
 
@@ -70,7 +70,7 @@ namespace HandbrakeBatchEncoder
                 {
                     string sourceFile = _encodeQueueFiles[0];
                     string destinationFile = Path.Combine(Settings.Default.OutputFolder, Path.GetFileNameWithoutExtension(sourceFile));
-                    destinationFile = Path.ChangeExtension(destinationFile, ".avi");
+                    destinationFile = Path.ChangeExtension(destinationFile, ".m4v");
 
                     _encoder.SourceFile = sourceFile;
                     _encoder.DestinationFile = destinationFile;
@@ -107,14 +107,7 @@ namespace HandbrakeBatchEncoder
                     uxEncodeQueueListView.Items.Add(Path.GetFileName(file));
                 }
 
-                if (_encodeQueueFiles.Count > 0)
-                {
-                    uxNowEncodingFile.Text = _encodeQueueFiles[0];
-                }
-                else
-                {
-                    uxNowEncodingFile.Text = "";
-                }
+                uxNowEncodingFile.Text = _encodeQueueFiles.Count > 0 ? _encodeQueueFiles[0] : "";
 
             }
         }
@@ -122,7 +115,7 @@ namespace HandbrakeBatchEncoder
         private void AddFileToQueue(string filename)
         {
             // Make sure file is of a supported type.
-            if (_filenamePattern.IsMatch(filename))       
+            if (_filenamePattern.IsMatch(filename))
             {
                 if (!_encodeQueueFiles.Contains(filename))
                 {
@@ -133,7 +126,7 @@ namespace HandbrakeBatchEncoder
 
         #endregion
 
-        #region "--  FileSystemWatcher Events --"
+        #region --  FileSystemWatcher Events --
 
         void _sourceFolderWatcher_Created(object sender, FileSystemEventArgs e)
         {
@@ -143,7 +136,7 @@ namespace HandbrakeBatchEncoder
 
         #endregion
 
-        #region "--  Background Worker Events  --"
+        #region --  Background Worker Events  --
 
         void _encoderWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
