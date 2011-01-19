@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -15,20 +11,29 @@ namespace HandbrakeBatchEncoder
 {
     public partial class MainForm : Form
     {
-        FileSystemWatcher _sourceFolderWatcher;
-        readonly List<string> _encodeQueueFiles = new List<string>();
+        #region --  Private Fields  --
 
-        delegate void UpdateEncodeQueueListDelegate();
+        private readonly Regex _supportedSourceFileExtensions = new Regex(@"\.(avi|mpg|mpeg)$");
 
-        readonly BackgroundWorker _encoderWorker = new BackgroundWorker { WorkerReportsProgress = true };
-        readonly HandbrakeEncoder _encoder = new HandbrakeEncoder();
+        private delegate void UpdateEncodeQueueListDelegate();
 
-        private readonly Regex _filenamePattern = new Regex(@"\.(avi|mpg|mpeg)$");
+        private FileSystemWatcher _sourceFolderWatcher;
+        private readonly List<string> _encodeQueueFiles = new List<string>();
+        private readonly BackgroundWorker _encoderWorker = new BackgroundWorker { WorkerReportsProgress = true };
+        private readonly HandbrakeEncoder _encoder = new HandbrakeEncoder();
+
+        #endregion
+
+        #region --  Constructor  --
 
         public MainForm()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region -- Form Events  --
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -39,12 +44,10 @@ namespace HandbrakeBatchEncoder
             // Update source path label
             uxWatchFolderNameLabel.Text = Settings.Default.WatchFolder;
 
-
             // Hook up Background Worker Events
-            _encoderWorker.ProgressChanged += _encoderWorker_ProgressChanged;
+            // _encoderWorker.ProgressChanged += _encoderWorker_ProgressChanged;
             _encoderWorker.RunWorkerCompleted += _encoderWorker_RunWorkerCompleted;
             _encoderWorker.DoWork += _encoder.EncodeFile;
-
 
             // Look for any existing files in folder
             var di = new DirectoryInfo(Settings.Default.WatchFolder);
@@ -52,76 +55,78 @@ namespace HandbrakeBatchEncoder
 
             foreach (var fileInfo in fi)
             {
-                //_encodeQueueFiles.Add(fileInfo.FullName);
                 AddFileToQueue(fileInfo.FullName);
             }
 
             CheckAndQueueEncoderTask();
         }
 
+        #endregion
 
-        #region "--  Private Methods  --"
+        #region --  Private Methods  --
 
+        /// <summary>
+        /// Checks if the HandbrakeEncoder is available to immediately start
+        /// encoding the next file. If it is not, nothing is done until the
+        /// encoder is no longer busy.
+        /// </summary>
         private void CheckAndQueueEncoderTask()
         {
-            if (!_encoderWorker.IsBusy)
+            UpdateEncodeQueueList();
+
+            if (_encoderWorker.IsBusy || _encodeQueueFiles.Count == 0)
             {
-                if (_encodeQueueFiles.Count > 0)
-                {
-                    string sourceFile = _encodeQueueFiles[0];
-                    string destinationFile = Path.Combine(Settings.Default.OutputFolder, Path.GetFileNameWithoutExtension(sourceFile));
-                    destinationFile = Path.ChangeExtension(destinationFile, ".m4v");
-
-                    _encoder.SourceFile = sourceFile;
-                    _encoder.DestinationFile = destinationFile;
-                    _encoderWorker.RunWorkerAsync();
-
-                    UpdateEncodeQueueList();
-
-                    _encodeQueueFiles.RemoveAt(0);
-                }
-                else
-                {
-                    UpdateEncodeQueueList();
-                }
-
-            }
-            else
-            {
-                UpdateEncodeQueueList();
+                return;
             }
 
+            // Start encoding the next file in the queue
+            var sourceFile = _encodeQueueFiles[0];
+            var destinationFile = Path.Combine(Settings.Default.OutputFolder,
+                                                  Path.GetFileNameWithoutExtension(sourceFile));
+            destinationFile = Path.ChangeExtension(destinationFile, ".m4v");
+
+            _encoder.SourceFilename = sourceFile;
+            _encoder.DestinationFilename = destinationFile;
+            _encoderWorker.RunWorkerAsync();
+
+            //UpdateEncodeQueueList();
+
+            //_encodeQueueFiles.RemoveAt(0);
         }
 
+        /// <summary>
+        /// Updates the pending list of files to be encoded in the UI.
+        /// </summary>
         private void UpdateEncodeQueueList()
         {
             if (InvokeRequired)
             {
                 Invoke(new UpdateEncodeQueueListDelegate(UpdateEncodeQueueList));
+                return;
             }
-            else
+
+            uxEncodeQueueListView.Items.Clear();
+            foreach (var file in _encodeQueueFiles)
             {
-                uxEncodeQueueListView.Items.Clear();
-                foreach (var file in _encodeQueueFiles)
-                {
-                    uxEncodeQueueListView.Items.Add(Path.GetFileName(file));
-                }
-
-                uxNowEncodingFile.Text = _encodeQueueFiles.Count > 0 ? _encodeQueueFiles[0] : "";
-
+                uxEncodeQueueListView.Items.Add(Path.GetFileName(file));
             }
+
+            uxNowEncodingFile.Text = _encodeQueueFiles.Count > 0 ? Path.GetFileName(_encodeQueueFiles[0]) : "";
+
         }
 
+        /// <summary>
+        /// Adds a new file to the Encoder queue.
+        /// </summary>
+        /// <param name="filename"></param>
         private void AddFileToQueue(string filename)
         {
             // Make sure file is of a supported type.
-            if (_filenamePattern.IsMatch(filename))
-            {
-                if (!_encodeQueueFiles.Contains(filename))
-                {
-                    _encodeQueueFiles.Add(filename);
-                }
-            }
+            if (!_supportedSourceFileExtensions.IsMatch(filename))
+                return;
+            if (_encodeQueueFiles.Contains(filename))
+                return;
+            _encodeQueueFiles.Add(filename);
         }
 
         #endregion
@@ -140,14 +145,20 @@ namespace HandbrakeBatchEncoder
 
         void _encoderWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            // Worker has comleted, so see if there's another item in the queue to encode
+            // Pop the completed job off the queue
+            if (_encodeQueueFiles.Count > 0)
+            {
+                _encodeQueueFiles.RemoveAt(0);
+            }
+
+            // See if there's another item in the queue to encode
             CheckAndQueueEncoderTask();
         }
 
-        void _encoderWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
+        //void _encoderWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
 
-        }
+        //}
 
         #endregion
 
