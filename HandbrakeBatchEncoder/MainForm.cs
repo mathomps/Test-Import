@@ -20,7 +20,7 @@ namespace HandbrakeBatchEncoder
         private FileSystemWatcher _sourceFolderWatcher;
         private readonly List<string> _encodeQueueFiles = new List<string>();
         private readonly BackgroundWorker _encoderWorker = new BackgroundWorker { WorkerReportsProgress = true };
-        private readonly HandbrakeEncoder _encoder = new HandbrakeEncoder();
+        //private readonly HandbrakeEncoder _encoder = new HandbrakeEncoder();
 
         #endregion
 
@@ -47,7 +47,7 @@ namespace HandbrakeBatchEncoder
             // Hook up Background Worker Events
             // _encoderWorker.ProgressChanged += _encoderWorker_ProgressChanged;
             _encoderWorker.RunWorkerCompleted += _encoderWorker_RunWorkerCompleted;
-            _encoderWorker.DoWork += _encoder.EncodeFile;
+            _encoderWorker.DoWork += HandbrakeEncoder.EncodeFile;
 
             // Look for any existing files in folder
             var di = new DirectoryInfo(Settings.Default.WatchFolder);
@@ -85,9 +85,14 @@ namespace HandbrakeBatchEncoder
                                                   Path.GetFileNameWithoutExtension(sourceFile));
             destinationFile = Path.ChangeExtension(destinationFile, ".m4v");
 
-            _encoder.SourceFilename = sourceFile;
-            _encoder.DestinationFilename = destinationFile;
-            _encoderWorker.RunWorkerAsync();
+            var settings = new HandbrakeEncoderSettings
+                               {
+                                   SourceFilename = sourceFile,
+                                   DestinationFilename = destinationFile
+                               };
+            //_encoder.SourceFilename = sourceFile;
+            //_encoder.DestinationFilename = destinationFile;
+            _encoderWorker.RunWorkerAsync(settings);
 
             //UpdateEncodeQueueList();
 

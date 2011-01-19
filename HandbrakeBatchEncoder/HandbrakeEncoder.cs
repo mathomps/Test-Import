@@ -6,18 +6,13 @@ using HandbrakeBatchEncoder.Properties;
 
 namespace HandbrakeBatchEncoder
 {
-    class HandbrakeEncoder
+
+    public static class HandbrakeEncoder
     {
-        #region --  properties  --
-
-        public string SourceFilename { get; set; }
-        public string DestinationFilename { get; set; }
-
-        #endregion
-
+       
         #region --  Public methods  --
 
-        public void EncodeFile(object sender, DoWorkEventArgs e)
+        public static void EncodeFile(object sender, DoWorkEventArgs e)
         {
             BackgroundEncodeFile(sender as BackgroundWorker, e);
         }
@@ -26,10 +21,13 @@ namespace HandbrakeBatchEncoder
 
         #region -- Private Methods  --
 
-        private void BackgroundEncodeFile(BackgroundWorker worker, DoWorkEventArgs e)
+        private static void BackgroundEncodeFile(BackgroundWorker worker, DoWorkEventArgs e)
         {
+            var settings = e.Argument as HandbrakeEncoderSettings;
+            if (worker == null || settings == null) return;
+
             // Make sure source file exists, but destination file doesn't (don't overwrite existing file)
-            if (!File.Exists(SourceFilename) || (File.Exists(DestinationFilename)))
+            if (!File.Exists(settings.SourceFilename) || (File.Exists(settings.DestinationFilename)))
                 return;
 
             // Wait for file to become readable...
@@ -37,7 +35,7 @@ namespace HandbrakeBatchEncoder
             {
                 try
                 {
-                    var fs = new FileStream(SourceFilename, FileMode.Open, FileAccess.Read, FileShare.None);
+                    var fs = new FileStream(settings.SourceFilename, FileMode.Open, FileAccess.Read, FileShare.None);
                     fs.Close();
                     break;
                 }
@@ -53,8 +51,8 @@ namespace HandbrakeBatchEncoder
 
             // Encode the file
             var handbrake = new Process();
-            var tempDestinationFilename = Path.ChangeExtension(DestinationFilename, ".tmp");
-            var filenameArgs = string.Format(" -i \"{0}\" -o \"{1}\"", SourceFilename, tempDestinationFilename);
+            var tempDestinationFilename = Path.ChangeExtension(settings.DestinationFilename, ".tmp");
+            var filenameArgs = string.Format(" -i \"{0}\" -o \"{1}\"", settings.SourceFilename, tempDestinationFilename);
             handbrake.StartInfo.FileName = Settings.Default.HandbrakeCliPath;
             handbrake.StartInfo.WorkingDirectory = Path.GetDirectoryName(Settings.Default.HandbrakeCliPath);
             handbrake.StartInfo.Arguments = Settings.Default.EncodeSettings + filenameArgs;
@@ -75,7 +73,7 @@ namespace HandbrakeBatchEncoder
             // Rename the output file to .avi (or original file extension)
             if (File.Exists(tempDestinationFilename))
             {
-                File.Move(tempDestinationFilename, DestinationFilename);
+                File.Move(tempDestinationFilename, settings.DestinationFilename);
 
                 var competedSourceFolder = Path.Combine(Settings.Default.WatchFolder, Settings.Default.CompletedInputFolder);
 
@@ -94,7 +92,7 @@ namespace HandbrakeBatchEncoder
 
                 if (Directory.Exists(competedSourceFolder))
                 {
-                    File.Move(SourceFilename, Path.Combine(competedSourceFolder, Path.GetFileName(SourceFilename)));
+                    File.Move(settings.SourceFilename, Path.Combine(competedSourceFolder, Path.GetFileName(settings.SourceFilename)));
                 }
             }
 
