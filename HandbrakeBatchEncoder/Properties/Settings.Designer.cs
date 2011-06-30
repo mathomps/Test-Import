@@ -43,16 +43,6 @@ namespace HandbrakeBatchEncoder.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-e x264 -q 20.0 -a 1 -E faac -B 160 -6 dpl2 -R Auto -D 0.0 -f mp4 -m -x ref=2:bfr" +
-            "ames=2:subme=6:mixed-refs=0:weightb=0:8x8dct=0:trellis=0 --crop 0:0:0:0 -X 720")]
-        public string EncodeSettings {
-            get {
-                return ((string)(this["EncodeSettings"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Data\\Media\\_Encode\\Drop")]
         public string WatchFolder {
             get {
@@ -66,6 +56,26 @@ namespace HandbrakeBatchEncoder.Properties {
         public string OutputFolder {
             get {
                 return ((string)(this["OutputFolder"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-e x264 -q 27.5 -a 1 -E faac -B 160 -6 dpl2 -R Auto -D 0.0 -f mp4 -m -x ref=2:bfr" +
+            "ames=2:subme=6:mixed-refs=0:weightb=0:8x8dct=0:trellis=0:cabac=0:weightp=0 --cro" +
+            "p 0:0:0:0 -X 720")]
+        public string EncodeSettings {
+            get {
+                return ((string)(this["EncodeSettings"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".mp4")]
+        public string OutputFileExtension {
+            get {
+                return ((string)(this["OutputFileExtension"]));
             }
         }
     }

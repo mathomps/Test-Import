@@ -83,7 +83,7 @@ namespace HandbrakeBatchEncoder
             var sourceFile = _encodeQueueFiles[0];
             var destinationFile = Path.Combine(Settings.Default.OutputFolder,
                                                   Path.GetFileNameWithoutExtension(sourceFile));
-            destinationFile = Path.ChangeExtension(destinationFile, ".m4v");
+            destinationFile = Path.ChangeExtension(destinationFile, Settings.Default.OutputFileExtension);
 
             var settings = new HandbrakeEncoderSettings
                                {
